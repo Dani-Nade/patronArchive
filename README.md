@@ -54,11 +54,6 @@ This launches:
 | GET | /api/youtube?videoId=… or ?q=… | – | YouTube proxy |
 | POST | /api/sightengine/check | – | Profanity check |
 
-## Migration note
-
-The previous Next.js + TypeScript + Prisma code under `src/` and `prisma/` is
-no longer used. Once you've verified the new MERN setup works, delete:
-
 ```
 src/  prisma/  next.config.ts  next-env.d.ts  tsconfig.json
 eslint.config.mjs  postcss.config.mjs  prisma.config.ts  public/

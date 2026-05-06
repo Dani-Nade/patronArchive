@@ -58,6 +58,3 @@ This launches:
 src/  prisma/  next.config.ts  next-env.d.ts  tsconfig.json
 eslint.config.mjs  postcss.config.mjs  prisma.config.ts  public/
 ```
-
-…and remove the old `node_modules/` + `package-lock.json` at the root (the
-new root `package.json` is the MERN orchestrator).

@@ -1,3 +1,6 @@
+// Loaded first: ES module imports are evaluated before this file's body, so
+// config must be read here for the route modules to see it.
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -54,7 +57,7 @@ async function start() {
   } else {
     console.warn('! No MONGO_URI configured — running without database');
   }
-  if (process.env.ANTHROPIC_API_KEY) warmUp();   // load the embedder ahead of the first question
+  warmUp();   // load the embedder in the background, ahead of the first question
   app.listen(PORT, () => console.log(`✓ Server: http://localhost:${PORT}`));
 }
 

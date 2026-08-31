@@ -9,17 +9,48 @@ import { track, trackError } from '../utils/apiTracker.js';
 
 const router = Router();
 
-const MODEL      = 'claude-opus-5';
-const EFFORT     = process.env.CHAT_EFFORT || 'medium';   // low | medium | high | xhigh | max
-const MAX_TOKENS = 8000;      // headroom for adaptive thinking; the prompt keeps answers short
-const MAX_TURNS  = 8;         // history kept per conversation
-const TOP_K      = 12;
+/*
+ * Two interchangeable generation backends:
+ *
+ *   local     — any OpenAI-compatible server on this machine (LM Studio, Ollama,
+ *               llama.cpp). Free, offline, and the default when no Anthropic key
+ *               is present.
+ *   anthropic — claude-opus-5. Better answers, billed per token.
+ *
+ * Retrieval is identical either way; only the final call differs.
+ */
+const ANTHROPIC_MODEL   = 'claude-opus-5';
+const ANTHROPIC_MAX     = 8000;   // headroom for adaptive thinking
+const LOCAL_MAX         = 700;    // small models ramble; the prompt asks for brevity anyway
+const LOCAL_PASSAGE_MAX = 700;
 
-let client = null;
+/*
+ * Read the environment on every call rather than once at module load. ES module
+ * imports are evaluated before the body of index.js runs, so anything captured at
+ * import time is captured before dotenv.config() has read server/.env — which
+ * silently ignored every setting below.
+ */
+function cfg() {
+  const provider = (process.env.CHAT_PROVIDER
+    || (process.env.ANTHROPIC_API_KEY ? 'anthropic' : 'local')).toLowerCase();
+  return {
+    provider,
+    localUrl: (process.env.LOCAL_LLM_URL || 'http://localhost:1234/v1').replace(/\/+$/, ''),
+    localModel: process.env.LOCAL_LLM_MODEL || '',   // blank = ask the server what it has
+    effort: process.env.CHAT_EFFORT || 'medium',
+    // A 7-8B model on a 4k context cannot take twelve passages and still have
+    // room to answer, so the local path retrieves fewer and trims each one.
+    topK: provider === 'local' ? 6 : 12,
+  };
+}
+
+const MAX_TURNS = 8;
+
+let anthropicClient = null;
 function anthropic() {
   if (!process.env.ANTHROPIC_API_KEY) return null;
-  client ??= new Anthropic();   // reads ANTHROPIC_API_KEY from the environment
-  return client;
+  anthropicClient ??= new Anthropic();
+  return anthropicClient;
 }
 
 /* ─── crude in-process rate limit, so an open endpoint can't run up a bill ─── */
@@ -69,7 +100,19 @@ Style:
 - Talk like a knowledgeable player, not a manual.
 - If the player is looking at a specific build, treat it as the subject of the conversation unless they say otherwise.`;
 
-function buildContextBlock(passages, page) {
+/* Smaller local models weight the end of the prompt most heavily, and they
+ * confabulate confidently when the context is silent — inventing ability
+ * cooldowns was the observed failure. Repeating the hard rules immediately
+ * before the question, rather than only in the system prompt, is what makes
+ * them stick. */
+const LOCAL_REMINDER = `
+RULES — apply these before you answer:
+- If a number, item effect, cooldown, ability or hero detail is not written in the CONTEXT above, you do not know it. Say so and stop. Do not estimate it, and do not reason it out from general knowledge of the game.
+- Only name items and heroes that appear in the CONTEXT.
+- Copy every number exactly as the CONTEXT writes it. Do not round, convert or restate it in your own terms.
+- It is correct and useful to answer "the Archive doesn't cover that". It is never acceptable to guess.`;
+
+function buildContextBlock(passages, page, provider) {
   if (!passages.length) {
     return 'CONTEXT: (the knowledge base is empty — tell the player the index has not been built yet)';
   }
@@ -77,11 +120,155 @@ function buildContextBlock(passages, page) {
     item: 'ITEM CATALOGUE', hero: 'HERO CATALOGUE', build: 'COMMUNITY BUILD',
     guide: 'BUILD GUIDE', thread: 'FORUM THREAD', reply: 'FORUM REPLY',
   };
+  const trim = t => (provider === 'local' && t.length > LOCAL_PASSAGE_MAX
+    ? `${t.slice(0, LOCAL_PASSAGE_MAX)}…`
+    : t);
   const body = passages
-    .map((p, i) => `[${i + 1}] (${label[p.source] ?? p.source}) ${p.title}\n${p.text}`)
+    .map((p, i) => `[${i + 1}] (${label[p.source] ?? p.source}) ${p.title}\n${trim(p.text)}`)
     .join('\n\n');
   const where = page ? `\n\nThe player is currently viewing: ${page}.` : '';
-  return `CONTEXT — passages retrieved from The Patron's Archive for this question:\n\n${body}${where}`;
+  const reminder = provider === 'local' ? `\n${LOCAL_REMINDER}` : '';
+  return `CONTEXT — passages retrieved from The Patron's Archive for this question:\n\n${body}${where}${reminder}`;
+}
+
+/* ────────────────────────── local (OpenAI-compatible) ────────────────────────── */
+
+let discovered = { url: null, model: null };
+
+async function localModels(url) {
+  const res = await fetch(`${url}/models`, { signal: AbortSignal.timeout(4000) });
+  if (!res.ok) throw new Error(`model list returned ${res.status}`);
+  const body = await res.json();
+  return (body.data ?? []).map(m => m.id);
+}
+
+/** Picks the configured model, or the first non-embedding one the server offers. */
+async function resolveLocalModel(c) {
+  if (c.localModel) return c.localModel;
+  if (discovered.url === c.localUrl && discovered.model) return discovered.model;
+  const ids = await localModels(c.localUrl);
+  const chat = ids.find(id => !/embed/i.test(id));
+  if (!chat) throw new Error('the local server has no chat model loaded');
+  discovered = { url: c.localUrl, model: chat };
+  return chat;
+}
+
+/* Reasoning models (qwen3 and friends) emit <think>…</think> before the answer.
+ * Strip it as it streams, holding back just enough to catch a split tag. */
+const OPEN = '<think>', CLOSE = '</think>';
+function makeThinkStripper() {
+  let buf = '', inside = false;
+  const keep = Math.max(OPEN.length, CLOSE.length) - 1;
+  return function push(chunk, flush = false) {
+    buf += chunk;
+    let out = '';
+    for (;;) {
+      if (inside) {
+        const i = buf.indexOf(CLOSE);
+        if (i === -1) { buf = buf.slice(Math.max(0, buf.length - keep)); break; }
+        buf = buf.slice(i + CLOSE.length);
+        inside = false;
+      } else {
+        const i = buf.indexOf(OPEN);
+        if (i === -1) {
+          const n = flush ? buf.length : Math.max(0, buf.length - keep);
+          out += buf.slice(0, n);
+          buf = buf.slice(n);
+          break;
+        }
+        out += buf.slice(0, i);
+        buf = buf.slice(i + OPEN.length);
+        inside = true;
+      }
+    }
+    return out;
+  };
+}
+
+async function streamLocal({ messages, onDelta, signal, cfg: c }) {
+  const model = await resolveLocalModel(c);
+  const res = await fetch(`${c.localUrl}/chat/completions`, {
+    method: 'POST',
+    signal,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model,
+      messages: [{ role: 'system', content: SYSTEM }, ...messages],
+      stream: true,
+      temperature: 0.15,      // low: the job is to stay on the passages, not to be creative
+      max_tokens: LOCAL_MAX,
+    }),
+  });
+  if (!res.ok || !res.body) {
+    throw new Error(`local model server returned ${res.status} — ${(await res.text().catch(() => '')).slice(0, 200)}`);
+  }
+
+  const reader  = res.body.getReader();
+  const decoder = new TextDecoder();
+  const strip   = makeThinkStripper();
+  let buffer = '', output = 0;
+
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const parts = buffer.split('\n');
+    buffer = parts.pop() ?? '';
+    for (const raw of parts) {
+      const line = raw.trim();
+      if (!line.startsWith('data:')) continue;
+      const payload = line.slice(5).trim();
+      if (payload === '[DONE]') continue;
+      let evt;
+      try { evt = JSON.parse(payload); } catch { continue; }
+      const piece = evt.choices?.[0]?.delta?.content;
+      if (!piece) continue;
+      output += 1;
+      const visible = strip(piece);
+      if (visible) onDelta(visible);
+    }
+  }
+  const tail = strip('', true);
+  if (tail) onDelta(tail);
+  return { model, usage: { input: 0, output } };
+}
+
+async function streamAnthropic({ messages, onDelta, onStream, cfg: c }) {
+  const ai = anthropic();
+  const stream = ai.messages.stream({
+    model: ANTHROPIC_MODEL,
+    max_tokens: ANTHROPIC_MAX,
+    system: SYSTEM,
+    thinking: { type: 'adaptive' },
+    output_config: { effort: c.effort },
+    messages,
+  });
+  onStream?.(stream);
+  stream.on('text', onDelta);
+  const final = await stream.finalMessage();
+  return {
+    model: ANTHROPIC_MODEL,
+    refused: final.stop_reason === 'refusal',
+    usage: { input: final.usage?.input_tokens ?? 0, output: final.usage?.output_tokens ?? 0 },
+  };
+}
+
+/** Whether the configured backend can actually serve a request right now. */
+async function providerHealth(c = cfg()) {
+  if (c.provider === 'anthropic') {
+    return process.env.ANTHROPIC_API_KEY
+      ? { ok: true, model: ANTHROPIC_MODEL }
+      : { ok: false, reason: 'Set ANTHROPIC_API_KEY in server/.env, or set CHAT_PROVIDER=local to use a model on this machine.' };
+  }
+  try {
+    const model = await resolveLocalModel(c);
+    return { ok: true, model };
+  } catch (e) {
+    return {
+      ok: false,
+      reason: `No local model server at ${c.localUrl} (${e.message}). Start LM Studio's server, or Ollama, and load a chat model.`,
+    };
+  }
 }
 
 /* ────────────────────────────────── routes ────────────────────────────────── */
@@ -89,10 +276,14 @@ function buildContextBlock(passages, page) {
 /* GET /api/chat/status — lets the widget render an honest state before asking */
 router.get('/status', async (_req, res, next) => {
   try {
-    const stats = await indexStats();
+    const c = cfg();
+    const [stats, health] = await Promise.all([indexStats(), providerHealth(c)]);
     res.json({
       success: true,
-      configured: !!process.env.ANTHROPIC_API_KEY,
+      configured: health.ok,
+      provider: c.provider,
+      model: health.model ?? null,
+      reason: health.reason ?? null,
       embedderReady: isReady(),
       index: stats,
     });
@@ -101,13 +292,9 @@ router.get('/status', async (_req, res, next) => {
 
 /* POST /api/chat — streams the answer back as server-sent events */
 router.post('/', optionalAuth, async (req, res) => {
-  const ai = anthropic();
-  if (!ai) {
-    return res.status(503).json({
-      success: false,
-      error: 'The assistant is not configured. Set ANTHROPIC_API_KEY in server/.env.',
-    });
-  }
+  const c = cfg();
+  const health = await providerHealth(c);
+  if (!health.ok) return res.status(503).json({ success: false, error: health.reason });
 
   const key = req.user ? `u:${req.user._id}` : `ip:${req.ip}`;
   if (rateLimited(key, req.user ? LIMIT_USER : LIMIT_ANON)) {
@@ -126,7 +313,7 @@ router.post('/', optionalAuth, async (req, res) => {
 
   let passages = [];
   try {
-    passages = await retrieve(message.trim(), { k: TOP_K, pinBuildId: buildId, pinHero: hero });
+    passages = await retrieve(message.trim(), { k: c.topK, pinBuildId: buildId, pinHero: hero });
   } catch (e) {
     return res.status(500).json({ success: false, error: `Retrieval failed: ${e.message}` });
   }
@@ -149,47 +336,40 @@ router.post('/', optionalAuth, async (req, res) => {
 
   const messages = [
     ...turns,
-    { role: 'user', content: `${buildContextBlock(passages, page)}\n\nPLAYER QUESTION: ${message.trim()}` },
+    { role: 'user', content: `${buildContextBlock(passages, page, c.provider)}\n\nPLAYER QUESTION: ${message.trim()}` },
   ];
 
-  let stream;
+  const controller = new AbortController();
+  let anthropicStream = null;
+  // Stop generating for a reply nobody is going to read.
+  req.on('close', () => {
+    controller.abort();
+    try { anthropicStream?.abort(); } catch { /* already settled */ }
+  });
+
   try {
-    track('anthropic');
-    stream = ai.messages.stream({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      system: SYSTEM,
-      thinking: { type: 'adaptive' },
-      output_config: { effort: EFFORT },
-      messages,
-    });
+    track(c.provider === 'local' ? 'local-llm' : 'anthropic');
+    const onDelta = (text) => send({ type: 'delta', text });
 
-    // Stop billing for a reply nobody is going to read.
-    req.on('close', () => { try { stream.abort(); } catch { /* already settled */ } });
+    const result = c.provider === 'local'
+      ? await streamLocal({ messages, onDelta, signal: controller.signal, cfg: c })
+      : await streamAnthropic({ messages, onDelta, onStream: s => { anthropicStream = s; }, cfg: c });
 
-    stream.on('text', (delta) => send({ type: 'delta', text: delta }));
-
-    const final = await stream.finalMessage();
-
-    if (final.stop_reason === 'refusal') {
+    if (result.refused) {
       send({ type: 'error', error: 'I can\'t help with that one. Try rephrasing, or ask something else about builds or strategy.' });
     } else {
-      send({
-        type: 'done',
-        usage: {
-          input: final.usage?.input_tokens ?? 0,
-          output: final.usage?.output_tokens ?? 0,
-        },
-      });
+      send({ type: 'done', provider: c.provider, model: result.model, usage: result.usage });
     }
   } catch (e) {
-    trackError('anthropic');
-    const message = e instanceof Anthropic.RateLimitError
+    trackError(c.provider === 'local' ? 'local-llm' : 'anthropic');
+    const text = e instanceof Anthropic.RateLimitError
       ? 'The assistant is rate limited right now. Give it a moment and try again.'
       : e instanceof Anthropic.AuthenticationError
         ? 'The assistant\'s API key was rejected. Check ANTHROPIC_API_KEY in server/.env.'
-        : e?.message ?? 'The assistant failed to respond.';
-    send({ type: 'error', error: message });
+        : e?.name === 'AbortError'
+          ? null
+          : e?.message ?? 'The assistant failed to respond.';
+    if (text) send({ type: 'error', error: text });
   } finally {
     res.end();
   }

@@ -13,7 +13,9 @@ import sightengineRoutes from './routes/sightengine.js';
 import adminRoutes       from './routes/admin.js';
 import patchRoutes       from './routes/patch.js';
 import forumsRoutes      from './routes/forums.js';
+import chatRoutes        from './routes/chat.js';
 import errorHandler      from './middleware/errorHandler.js';
+import { warmUp }        from './utils/embeddings.js';
 
 dotenv.config();
 
@@ -33,6 +35,7 @@ app.use('/api/sightengine', sightengineRoutes);
 app.use('/api/admin',       adminRoutes);
 app.use('/api/patch',       patchRoutes);
 app.use('/api/forums',      forumsRoutes);
+app.use('/api/chat',        chatRoutes);
 
 app.use(errorHandler);
 
@@ -51,6 +54,7 @@ async function start() {
   } else {
     console.warn('! No MONGO_URI configured — running without database');
   }
+  if (process.env.ANTHROPIC_API_KEY) warmUp();   // load the embedder ahead of the first question
   app.listen(PORT, () => console.log(`✓ Server: http://localhost:${PORT}`));
 }
 

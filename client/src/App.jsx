@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header.jsx';
+import ChatWidget from './components/chat/ChatWidget.jsx';
 import { useAuth } from './lib/auth.jsx';
 import HomePage         from './pages/HomePage.jsx';
 import BuildsPage       from './pages/BuildsPage.jsx';
@@ -59,6 +60,7 @@ export default function App() {
           </Route>
         </Routes>
       </div>
+      <ChatWidget />
     </div>
   );
 }

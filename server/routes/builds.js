@@ -2,6 +2,8 @@ import { Router } from 'express';
 import Build from '../models/Build.js';
 import auth from '../middleware/auth.js';
 import { checkText } from '../utils/sightengine.js';
+import { reindexBuild } from '../utils/rag.js';
+import Chunk from '../models/Chunk.js';
 
 const router = Router();
 
@@ -63,6 +65,7 @@ router.post('/', auth, async (req, res, next) => {
       reported: autoFlagged,
       reportReason: autoFlagged ? 'Auto-flagged: user bypassed content warning' : '',
     });
+    reindexBuild(build._id).catch(e => console.warn('[rag] index update failed:', e.message));
     res.json({ success: true, build });
   } catch (e) { next(e); }
 });
@@ -75,6 +78,7 @@ router.put('/:id', auth, async (req, res, next) => {
       return res.status(403).json({ success: false, error: 'Forbidden' });
     Object.assign(build, req.body);
     await build.save();
+    reindexBuild(build._id).catch(e => console.warn('[rag] index update failed:', e.message));
     res.json({ success: true, build });
   } catch (e) { next(e); }
 });
@@ -86,6 +90,8 @@ router.delete('/:id', auth, async (req, res, next) => {
     if (build.author.toString() !== req.user._id.toString() && req.user.role !== 'admin')
       return res.status(403).json({ success: false, error: 'Forbidden' });
     await build.deleteOne();
+    Chunk.deleteMany({ refId: String(build._id), source: { $in: ['build', 'guide'] } })
+      .catch(e => console.warn('[rag] index cleanup failed:', e.message));
     res.json({ success: true });
   } catch (e) { next(e); }
 });

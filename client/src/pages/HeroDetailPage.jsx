@@ -21,7 +21,7 @@ function BuildCard({ build, rank }) {
 
   return (
     <Link to={`/builds/${id}`}
-      className="relative bg-neutral-900 border border-neutral-800 hover:border-teal-500/40 hover:shadow-[0_0_20px_rgba(20,184,166,0.08)] rounded-2xl p-4 transition-all group">
+      className="relative bg-neutral-900 border border-neutral-800 hover:border-amber-500/30 hover:shadow-glow-amber rounded-2xl p-4 transition-all group">
 
       {rank <= 3 && (
         <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-black shadow-lg"
@@ -176,7 +176,7 @@ export default function HeroDetailPage() {
 
   /* ── Loading ── */
   if (loading) return (
-    <div className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] flex items-center justify-center">
+    <div className="min-h-[calc(100vh-64px)] bg-neutral-950 flex items-center justify-center">
       <div className="flex flex-col items-center gap-3">
         <div className="w-8 h-8 border-2 border-teal-500/30 border-t-teal-500 rounded-full animate-spin" />
         <p className="text-neutral-500 text-sm">Loading hero…</p>
@@ -186,7 +186,7 @@ export default function HeroDetailPage() {
 
   /* ── Not found ── */
   if (notFound) return (
-    <div className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] flex items-center justify-center">
+    <div className="min-h-[calc(100vh-64px)] bg-neutral-950 flex items-center justify-center">
       <div className="text-center">
         <p className="text-5xl font-black text-neutral-800 mb-4">404</p>
         <p className="text-neutral-400 mb-4">Hero "{heroName}" not found.</p>
@@ -196,7 +196,7 @@ export default function HeroDetailPage() {
   );
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 font-sans">
 
       {/* ── Hero Header ── */}
       <div className="relative overflow-hidden">
@@ -208,7 +208,7 @@ export default function HeroDetailPage() {
               style={{ filter: 'blur(32px)', transform: 'scale(1.2)' }} />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-[#0a0a0a]/70 to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/70 to-neutral-950" />
 
         <div className="relative px-4 sm:px-8 pt-10 pb-12 max-w-6xl mx-auto">
           {/* Breadcrumb */}
@@ -230,12 +230,12 @@ export default function HeroDetailPage() {
                       {heroName.charAt(0)}
                     </div>}
               </div>
-              <div className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-teal-500 border-2 border-[#0a0a0a] shadow" />
+              <div className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-teal-500 border-2 border-neutral-950 shadow" />
             </div>
 
             {/* Info */}
             <div className="flex-1 min-w-0">
-              <h1 className="text-5xl sm:text-6xl font-black tracking-tight text-white leading-none">
+              <h1 className="font-display text-5xl sm:text-6xl text-neutral-100 leading-none">
                 {hero?.name ?? heroName}
               </h1>
               {hero?.role && (
@@ -256,7 +256,7 @@ export default function HeroDetailPage() {
             </div>
 
             <Link to="/builds/create"
-              className="shrink-0 self-start bg-teal-500 hover:bg-teal-400 text-black font-black px-5 py-2.5 rounded-xl transition-all text-sm active:scale-95">
+              className="shrink-0 self-start bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black px-5 py-2.5 rounded-xl transition-all text-sm active:scale-95">
               + Create Build
             </Link>
           </div>
@@ -270,7 +270,7 @@ export default function HeroDetailPage() {
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
               <h2 className="text-2xl font-black text-white tracking-tight">
-                {heroName} <span className="text-teal-400">Builds</span>
+                {heroName} <span className="text-amber-400">Builds</span>
               </h2>
               <p className="text-xs text-neutral-500 mt-0.5">
                 {builds.length} community {builds.length === 1 ? 'guide' : 'guides'} · click to view full build
@@ -297,7 +297,7 @@ export default function HeroDetailPage() {
               <p className="text-neutral-300 font-bold">No builds yet for {heroName}</p>
               <p className="text-neutral-500 text-sm mt-1">Be the first to share a strategy.</p>
               <Link to="/builds/create"
-                className="mt-4 inline-block bg-teal-500 hover:bg-teal-400 text-black font-black px-5 py-2.5 rounded-xl text-sm transition-all">
+                className="mt-4 inline-block bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black px-5 py-2.5 rounded-xl text-sm transition-all">
                 Create the First Build →
               </Link>
             </div>

@@ -156,7 +156,7 @@ export default function ForumsPage() {
   const totalReplies = threads.reduce((s, t) => s + (t.replyCount ?? 0), 0);
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 font-sans">
 
       {/* Header */}
       <div className="relative overflow-hidden px-4 sm:px-8 pt-12 pb-10 border-b border-neutral-800/50">
@@ -164,19 +164,16 @@ export default function ForumsPage() {
         <div className="relative max-w-5xl mx-auto">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/20 text-teal-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-                Community Discussion
-              </div>
-              <h1 className="text-4xl font-black tracking-tight text-white">
-                Community <span className="text-teal-400">Forums</span>
+              <span className="ribbon text-sm mb-4">Community Discussion</span>
+              <h1 className="font-display text-4xl text-neutral-100">
+                Community <span className="text-amber-400">Forums</span>
               </h1>
               <p className="text-sm text-neutral-500 mt-1.5 max-w-lg">
                 Talk strategy, ask questions, share opinions — discuss anything Deadlock.
               </p>
             </div>
             <Link to="/forums/create"
-              className="shrink-0 bg-teal-500 hover:bg-teal-400 text-black font-black px-5 py-2.5 rounded-xl transition-all text-sm tracking-wide active:scale-95">
+              className="shrink-0 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black px-5 py-2.5 rounded-xl transition-all text-sm tracking-wide active:scale-95">
               + New Thread
             </Link>
           </div>
@@ -188,7 +185,7 @@ export default function ForumsPage() {
                 { val: totalReplies, label: 'Total Replies' },
               ].map(s => (
                 <div key={s.label} className="flex items-baseline gap-2">
-                  <span className="text-2xl font-black text-teal-400">{s.val}</span>
+                  <span className="font-display text-2xl text-teal-400">{s.val}</span>
                   <span className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">{s.label}</span>
                 </div>
               ))}
@@ -234,7 +231,7 @@ export default function ForumsPage() {
               placeholder="Search threads…"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="flex-1 min-w-[160px] bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600"
+              className="flex-1 min-w-[160px] bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600"
             />
           </div>
 

@@ -187,8 +187,8 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen(o => !o)}
         aria-label={open ? 'Close the Archivist' : 'Ask the Archivist'}
-        className="fixed bottom-5 left-5 z-40 h-14 w-14 rounded-full bg-teal-500 hover:bg-teal-400 text-black
-                   shadow-lg shadow-teal-500/20 flex items-center justify-center transition-all active:scale-95"
+        className="fixed bottom-5 left-5 z-40 h-14 w-14 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950
+                   shadow-lg shadow-amber-500/25 flex items-center justify-center transition-all active:scale-95"
       >
         {open
           ? <span className="text-2xl leading-none font-light">×</span>
@@ -294,10 +294,10 @@ export default function ChatWidget() {
               disabled={busy || unavailable}
               placeholder={context.buildId ? 'Ask about this build…' : 'Ask about builds or items…'}
               className="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-sm
-                         focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600 disabled:opacity-50"
+                         focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600 disabled:opacity-50"
             />
             <button type="submit" disabled={busy || !input.trim() || unavailable}
-              className="bg-teal-500 hover:bg-teal-400 disabled:opacity-30 text-black font-bold px-4 rounded-xl text-sm transition-colors">
+              className="bg-amber-400 hover:bg-amber-300 disabled:opacity-30 text-neutral-950 font-bold px-4 rounded-xl text-sm transition-colors">
               {busy ? '…' : 'Ask'}
             </button>
           </form>

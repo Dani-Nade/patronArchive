@@ -14,9 +14,9 @@ const SECTION_BADGE = {
 };
 
 const THEME = {
-  all:      { slot: '',         label: 'All',      tabActive: 'bg-teal-500 text-black',    panelBg: 'bg-teal-950/20 border-teal-800/30',    tabBarBg: 'bg-teal-950/50',    rowDivider: 'border-teal-900/20',    costAreaBg: 'bg-teal-950/40 border-teal-900/20',    costColor: 'text-teal-400',    cardBg: 'bg-teal-900/10 border-teal-800/20',    cardHover: 'hover:border-teal-400 hover:bg-teal-900/30',    searchFocus: 'focus:border-teal-700',    hudAccent: 'border-teal-500/30 shadow-teal-500/10',    publishBtn: 'bg-teal-500 hover:bg-teal-400 text-black' },
-  weapon:   { slot: 'weapon',   label: 'Weapon',   tabActive: 'bg-amber-500 text-black',   panelBg: 'bg-amber-950/30 border-amber-800/40',  tabBarBg: 'bg-amber-950/60',   rowDivider: 'border-amber-900/30',   costAreaBg: 'bg-amber-950/50 border-amber-900/30',  costColor: 'text-amber-400',   cardBg: 'bg-amber-900/20 border-amber-800/30',  cardHover: 'hover:border-amber-400 hover:bg-amber-900/40',  searchFocus: 'focus:border-amber-700',   hudAccent: 'border-amber-500/30 shadow-amber-500/10',  publishBtn: 'bg-amber-500 hover:bg-amber-400 text-black' },
-  vitality: { slot: 'vitality', label: 'Vitality', tabActive: 'bg-green-500 text-black',   panelBg: 'bg-green-950/30 border-green-800/40',  tabBarBg: 'bg-green-950/60',   rowDivider: 'border-green-900/30',   costAreaBg: 'bg-green-950/50 border-green-900/30',  costColor: 'text-green-400',   cardBg: 'bg-green-900/20 border-green-800/30',  cardHover: 'hover:border-green-400 hover:bg-green-900/40',  searchFocus: 'focus:border-green-700',   hudAccent: 'border-green-500/30 shadow-green-500/10',  publishBtn: 'bg-green-500 hover:bg-green-400 text-black' },
+  all:      { slot: '',         label: 'All',      tabActive: 'bg-ember-500 text-neutral-950',   panelBg: 'bg-ember-950/20 border-ember-800/30',  panelBorder: '', tabBarBg: 'bg-ember-950/50',   rowDivider: 'border-ember-900/20',   costAreaBg: 'bg-ember-950/40 border-ember-900/20',  costColor: 'text-ember-300',   cardBg: 'bg-ember-900/10 border-ember-800/20',  cardHover: 'hover:border-ember-400 hover:bg-ember-900/30',  searchFocus: 'focus:border-ember-700',   hudAccent: 'border-ember-500/30 shadow-ember-500/10',  publishBtn: 'bg-amber-400 hover:bg-amber-300 text-neutral-950' },
+  weapon:   { slot: 'weapon',   label: 'Weapon',   tabActive: 'bg-amber-500 text-neutral-950',   panelBg: 'bg-amber-950/30 border-amber-800/40',  tabBarBg: 'bg-amber-950/60',   rowDivider: 'border-amber-900/30',   costAreaBg: 'bg-amber-950/50 border-amber-900/30',  costColor: 'text-amber-400',   cardBg: 'bg-amber-900/20 border-amber-800/30',  cardHover: 'hover:border-amber-400 hover:bg-amber-900/40',  searchFocus: 'focus:border-amber-700',   hudAccent: 'border-amber-500/30 shadow-amber-500/10',  publishBtn: 'bg-amber-500 hover:bg-amber-400 text-neutral-950' },
+  vitality: { slot: 'vitality', label: 'Vitality', tabActive: 'bg-green-500 text-neutral-950',   panelBg: 'bg-green-950/30 border-green-800/40',  tabBarBg: 'bg-green-950/60',   rowDivider: 'border-green-900/30',   costAreaBg: 'bg-green-950/50 border-green-900/30',  costColor: 'text-green-400',   cardBg: 'bg-green-900/20 border-green-800/30',  cardHover: 'hover:border-green-400 hover:bg-green-900/40',  searchFocus: 'focus:border-green-700',   hudAccent: 'border-green-500/30 shadow-green-500/10',  publishBtn: 'bg-green-500 hover:bg-green-400 text-neutral-950' },
   spirit:   { slot: 'spirit',   label: 'Spirit',   tabActive: 'bg-purple-500 text-white',  panelBg: 'bg-purple-950/30 border-purple-800/40', tabBarBg: 'bg-purple-950/60',  rowDivider: 'border-purple-900/30',  costAreaBg: 'bg-purple-950/50 border-purple-900/30', costColor: 'text-purple-400',  cardBg: 'bg-purple-900/20 border-purple-800/30', cardHover: 'hover:border-purple-400 hover:bg-purple-900/40', searchFocus: 'focus:border-purple-700',  hudAccent: 'border-purple-500/30 shadow-purple-500/10', publishBtn: 'bg-purple-500 hover:bg-purple-400 text-white' },
 };
 
@@ -55,7 +55,7 @@ function ItemTooltip({ item, x, y }) {
           <div className={`text-xs font-medium mt-0.5 ${slotColor}`}>{slotLabel} · Tier {item.tier}</div>
         </div>
         <div className="text-right shrink-0">
-          <div className="text-teal-400 font-mono font-bold text-sm">{item.cost.toLocaleString()}</div>
+          <div className="text-amber-400 font-mono font-bold text-sm">{item.cost.toLocaleString()}</div>
           <div className="text-[10px] text-neutral-500">Souls</div>
         </div>
       </div>
@@ -177,7 +177,7 @@ export default function BuildCalculator({ heroes, items }) {
                     title={item.name}
                     disabled={selected}
                     className={`w-[70px] flex flex-col items-center group focus:outline-none ${selected ? 'opacity-40 cursor-not-allowed' : ''}`}>
-                    <div className={`w-14 h-14 relative rounded-lg border overflow-hidden transition-all ${selected ? 'border-teal-500/60 ring-1 ring-teal-500/40' : `${th.cardBg} ${th.cardHover}`}`}>
+                    <div className={`w-14 h-14 relative rounded-lg border overflow-hidden transition-all ${selected ? 'border-amber-500/60 ring-1 ring-amber-500/40' : `${th.cardBg} ${th.cardHover}`}`}>
                       {item.images?.icon
                         ? <img src={item.images.icon} alt={item.name} className="absolute inset-0 w-full h-full object-contain p-0.5" />
                         : <span className="absolute inset-0 flex items-center justify-center text-neutral-600 text-xs">?</span>}

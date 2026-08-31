@@ -34,19 +34,19 @@ export default function BuildsPage() {
   }, []);
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
       <div className="max-w-5xl mx-auto">
         <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 border-b border-neutral-800 pb-5">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white">
-              Community <span className="text-teal-400">Builds</span>
+            <h1 className="font-display text-3xl sm:text-4xl text-neutral-100">
+              Community <span className="text-amber-400">Builds</span>
             </h1>
-            <p className="text-sm text-neutral-500 mt-1">
-              Discover top-rated builds crafted by the community.
+            <p className="eyebrow mt-2">
+              Top-rated loadouts, curated by the community
             </p>
           </div>
           <Link to="/builds/create"
-            className="self-start sm:self-auto bg-teal-500 hover:bg-teal-400 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors shrink-0">
+            className="self-start sm:self-auto bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-sm px-5 py-2.5 rounded-xl transition-colors shrink-0">
             + Create Build
           </Link>
         </header>
@@ -57,7 +57,7 @@ export default function BuildsPage() {
             placeholder="Search by title, hero, or author…"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full sm:flex-1 bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600"
+            className="w-full sm:flex-1 bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600"
           />
           <select value={role} onChange={e => setRole(e.target.value)}
             className="bg-neutral-900 border border-neutral-800 text-neutral-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none cursor-pointer">

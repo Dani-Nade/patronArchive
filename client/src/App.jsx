@@ -33,7 +33,7 @@ function ProtectedRoute({ children }) {
 
 export default function App() {
   return (
-    <div className="bg-[#0a0a0a] text-neutral-50 min-h-screen flex flex-col">
+    <div className="bg-neutral-950 text-neutral-50 min-h-screen flex flex-col">
       <Header />
       <div className="flex-1">
         <Routes>

@@ -5,7 +5,7 @@ import api from '../lib/api.js';
 function HeroCard({ hero, buildCount }) {
   return (
     <Link to={`/heroes/${encodeURIComponent(hero.name)}`}
-      className="bg-neutral-900 border border-neutral-800 hover:border-teal-500/50 hover:shadow-[0_0_20px_rgba(20,184,166,0.12)] rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col">
+      className="bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 hover:shadow-glow-amber rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col">
 
       <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden">
         {hero.images?.portrait ? (
@@ -19,8 +19,8 @@ function HeroCard({ hero, buildCount }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
 
         {buildCount > 0 && (
-          <div className="absolute bottom-2 right-2 bg-black/70 border border-teal-500/30 backdrop-blur-sm rounded-lg px-2 py-0.5">
-            <span className="text-[9px] font-black text-teal-400 uppercase tracking-widest">
+          <div className="absolute bottom-2 right-2 bg-neutral-950/80 border border-amber-500/30 backdrop-blur-sm rounded-lg px-2 py-0.5">
+            <span className="text-[9px] font-black text-amber-400 uppercase tracking-widest">
               {buildCount} build{buildCount !== 1 ? 's' : ''}
             </span>
           </div>
@@ -34,7 +34,7 @@ function HeroCard({ hero, buildCount }) {
       </div>
 
       <div className="p-3">
-        <h3 className="font-black text-neutral-100 group-hover:text-teal-400 transition-colors truncate text-sm">
+        <h3 className="font-black text-neutral-100 group-hover:text-amber-400 transition-colors truncate text-sm">
           {hero.name}
         </h3>
         {hero.role && (
@@ -89,20 +89,17 @@ export default function HeroesPage() {
   const topHeroName    = Object.entries(buildCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? '—';
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 font-sans">
 
       {/* ── Header ── */}
       <div className="relative overflow-hidden px-4 sm:px-8 pt-12 pb-10 border-b border-neutral-800/50">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,rgba(20,184,166,0.08),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,rgba(247,172,46,0.08),transparent)]" />
         <div className="relative max-w-7xl mx-auto">
 
-          <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/20 text-teal-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-            Hero Roster
-          </div>
+          <span className="ribbon text-sm mb-4">Hero Roster</span>
 
-          <h1 className="text-4xl font-black tracking-tight text-white">
-            Hero <span className="text-teal-400">Directory</span>
+          <h1 className="font-display text-4xl text-neutral-100">
+            Hero <span className="text-amber-400">Directory</span>
           </h1>
           <p className="text-sm text-neutral-500 mt-1.5 max-w-xl">
             Browse the full Deadlock roster. Click any hero to see community builds, item breakdowns, and video guides.
@@ -117,7 +114,7 @@ export default function HeroesPage() {
                 { val: topHeroName,    label: 'Most Played',       color: 'text-amber-400' },
               ].map(s => (
                 <div key={s.label} className="flex items-baseline gap-2">
-                  <span className={`text-xl font-black ${s.color ?? 'text-teal-400'}`}>{s.val}</span>
+                  <span className={`font-display text-xl ${s.color ?? 'text-amber-400'}`}>{s.val}</span>
                   <span className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">{s.label}</span>
                 </div>
               ))}
@@ -137,7 +134,7 @@ export default function HeroesPage() {
               placeholder="Search heroes…"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600"
+              className="w-full bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600"
             />
           </div>
           {!loading && (

@@ -19,7 +19,7 @@ export default function AdminLayout() {
   if (!user) return <Navigate to="/login" replace />;
 
   if (user.role !== 'admin') return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-neutral-500">
+    <div className="min-h-screen bg-neutral-950 flex items-center justify-center text-neutral-500">
       <div className="text-center">
         <p className="text-2xl font-black text-red-400 mb-2">Access Denied</p>
         <p className="text-sm">Admin access required.</p>
@@ -35,7 +35,7 @@ export default function AdminLayout() {
           <NavLink key={n.to} to={n.to} end={n.end} onClick={close}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                isActive ? 'bg-teal-500/10 text-teal-400 border border-teal-500/20' : 'text-neutral-400 hover:text-neutral-100 hover:bg-neutral-900'
+                isActive ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'text-neutral-400 hover:text-neutral-100 hover:bg-neutral-900'
               }`
             }>
             <span className="text-base">{n.icon}</span>
@@ -47,7 +47,7 @@ export default function AdminLayout() {
   );
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 font-sans flex">
+    <div className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 font-sans flex">
 
       {/* ── Mobile overlay ── */}
       {sidebarOpen && (
@@ -61,7 +61,7 @@ export default function AdminLayout() {
       {/* Mobile: fixed overlay sliding from left. Desktop: static in flex flow. */}
       <aside
         className={`
-          fixed top-16 bottom-0 left-0 z-50 w-56 bg-[#0a0a0a] border-r border-neutral-800
+          fixed top-16 bottom-0 left-0 z-50 w-56 bg-neutral-950 border-r border-neutral-800
           flex flex-col py-6 px-3 transition-transform duration-200 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           md:static md:translate-x-0 md:shrink-0 md:flex

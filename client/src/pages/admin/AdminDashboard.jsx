@@ -56,7 +56,7 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8 max-w-5xl">
       <div>
-        <h1 className="text-3xl font-black text-white tracking-tight">Dashboard</h1>
+        <h1 className="font-display text-3xl text-neutral-100">Dashboard</h1>
         <p className="text-sm text-neutral-500 mt-1">Platform overview and analytics</p>
       </div>
 

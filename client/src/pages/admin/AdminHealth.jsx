@@ -261,7 +261,7 @@ export default function AdminHealth() {
         <div className="flex flex-wrap gap-2 items-center">
           <input type="text" value={patchInput} onChange={e => setPatchInput(e.target.value)}
             placeholder="e.g. 1.6"
-            className="w-28 bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-3 py-2 text-sm font-mono focus:outline-none focus:border-teal-500/40" />
+            className="w-28 bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-3 py-2 text-sm font-mono focus:outline-none focus:border-amber-500/40" />
           <button onClick={savePatch} disabled={patchSaving}
             className="text-xs font-bold bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/20 px-4 py-2 rounded-xl transition-colors disabled:opacity-40">
             Set Manually

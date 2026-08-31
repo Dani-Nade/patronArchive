@@ -172,7 +172,7 @@ export default function PublishForm() {
           </div>
         </div>
         <div className="text-right shrink-0">
-          <p className="font-mono font-bold text-teal-400 text-lg">{draft.totalCost.toLocaleString()}</p>
+          <p className="font-mono font-bold text-amber-400 text-lg">{draft.totalCost.toLocaleString()}</p>
           <p className="text-[10px] text-neutral-600 uppercase tracking-widest">Souls</p>
         </div>
       </div>
@@ -181,7 +181,7 @@ export default function PublishForm() {
         <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Build Title</label>
         <input type="text" placeholder={`${draft.hero.name} Build Guide`} value={title}
           onChange={e => setTitle(e.target.value)}
-          className="w-full bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600" />
+          className="w-full bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600" />
       </div>
 
       <div className="space-y-2">
@@ -189,7 +189,7 @@ export default function PublishForm() {
         <div className="flex gap-2 flex-wrap">
           {ROLES.map(r => (
             <button key={r} type="button" onClick={() => setRole(r)}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg border transition-colors ${role === r ? 'bg-teal-500 border-teal-500 text-black' : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'}`}>
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg border transition-colors ${role === r ? 'bg-amber-400 border-amber-400 text-neutral-950' : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'}`}>
               {r}
             </button>
           ))}
@@ -201,7 +201,7 @@ export default function PublishForm() {
         <div className="flex gap-2 flex-wrap">
           {patchOptions.map(p => (
             <button key={p} type="button" onClick={() => setPatch(p)}
-              className={`px-4 py-2 text-xs font-bold rounded-lg border transition-colors ${patch === p ? 'bg-teal-500 border-teal-500 text-black' : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'}`}>
+              className={`px-4 py-2 text-xs font-bold rounded-lg border transition-colors ${patch === p ? 'bg-amber-400 border-amber-400 text-neutral-950' : 'bg-neutral-900 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700'}`}>
               {p}
             </button>
           ))}
@@ -244,7 +244,7 @@ export default function PublishForm() {
                 className="w-full flex items-center gap-3 bg-neutral-900 hover:bg-neutral-800 p-3 text-left transition-colors group border-b border-neutral-800 last:border-0">
                 <img src={v.thumbnail} alt={v.title} width={96} height={54} className="rounded-lg object-cover shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-neutral-200 group-hover:text-teal-400 line-clamp-2 transition-colors">{v.title}</p>
+                  <p className="text-sm font-medium text-neutral-200 group-hover:text-amber-300 line-clamp-2 transition-colors">{v.title}</p>
                   <p className="text-xs text-neutral-500 mt-0.5">{v.channel}</p>
                 </div>
               </button>
@@ -270,12 +270,12 @@ export default function PublishForm() {
           <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Timestamps</p>
           <div className="flex gap-2">
             <input type="text" placeholder="0:00" value={tsTime} onChange={e => setTsTime(e.target.value)}
-              className="w-20 bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-3 py-2.5 text-sm font-mono text-center focus:outline-none focus:border-teal-500/40" />
+              className="w-20 bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-3 py-2.5 text-sm font-mono text-center focus:outline-none focus:border-amber-500/40" />
             <input type="text" placeholder="Label (e.g. First Fight)" value={tsLabel}
               onChange={e => setTsLabel(e.target.value)} onKeyDown={e => e.key === 'Enter' && addTimestamp()}
-              className="flex-1 bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600" />
+              className="flex-1 bg-neutral-900 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600" />
             <button onClick={addTimestamp}
-              className="bg-teal-500 hover:bg-teal-400 text-black font-bold text-xs px-4 rounded-xl transition-colors">+ Add</button>
+              className="bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs px-4 rounded-xl transition-colors">+ Add</button>
           </div>
           {timestamps.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -318,7 +318,7 @@ export default function PublishForm() {
       {publishError && <p className="text-red-400 text-sm bg-red-950/30 border border-red-900/40 rounded-xl px-4 py-3">{publishError}</p>}
 
       <button onClick={handlePublish} disabled={publishing || !!flagWarning}
-        className="w-full bg-teal-500 hover:bg-teal-400 active:scale-[0.99] disabled:opacity-40 text-black font-black text-base py-4 rounded-2xl transition-all">
+        className="w-full bg-amber-400 hover:bg-amber-300 active:scale-[0.99] disabled:opacity-40 text-neutral-950 font-display text-base py-4 rounded-2xl transition-all">
         {publishing ? 'Publishing…' : 'Publish Build Guide →'}
       </button>
     </div>

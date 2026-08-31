@@ -41,7 +41,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
       <div className="max-w-3xl mx-auto space-y-10">
 
         <header className="flex items-center gap-5 border-b border-neutral-800 pb-6">
@@ -63,21 +63,21 @@ export default function ProfilePage() {
           <div>
             <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1.5">Display Name</label>
             <input type="text" value={name} onChange={e => setName(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500/40" />
+              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500/40" />
           </div>
           <div>
             <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1.5">Avatar URL</label>
             <input type="url" value={avatar} onChange={e => setAvatar(e.target.value)} placeholder="https://…"
-              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600" />
+              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600" />
           </div>
           <div>
             <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1.5">Bio</label>
             <textarea rows={3} value={bio} onChange={e => setBio(e.target.value)} maxLength={200}
-              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-teal-500/40" />
+              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-amber-500/40" />
           </div>
           <div className="flex items-center gap-3">
             <button type="submit" disabled={saving}
-              className="bg-teal-500 hover:bg-teal-400 disabled:opacity-40 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors">
+              className="bg-amber-400 hover:bg-amber-300 disabled:opacity-40 text-neutral-950 font-bold text-sm px-5 py-2.5 rounded-xl transition-colors">
               {saving ? 'Saving…' : 'Save changes'}
             </button>
             {savedAt && <span className="text-xs text-teal-400">Saved.</span>}

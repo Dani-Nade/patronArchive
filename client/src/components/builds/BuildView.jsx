@@ -76,9 +76,9 @@ function CommentSection({ buildId }) {
 
   return (
     <div className="space-y-4">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+      <span className="ribbon text-sm">
         Community Discussion ({comments.length})
-      </p>
+      </span>
 
       {user && (
         <form onSubmit={submit} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-4 space-y-3">
@@ -88,7 +88,7 @@ function CommentSection({ buildId }) {
             onChange={e => setBody(e.target.value)}
             placeholder="Share your thoughts on this build…"
             maxLength={1000}
-            className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600"
+            className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600"
           />
           {error && <p className="text-xs text-red-400">{error}</p>}
           {flagWarning && (
@@ -109,7 +109,7 @@ function CommentSection({ buildId }) {
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-neutral-600">{body.length}/1000</span>
             <button type="submit" disabled={posting || !body.trim() || !!flagWarning}
-              className="bg-teal-500 hover:bg-teal-400 disabled:opacity-40 text-black font-bold text-xs px-4 py-2 rounded-xl transition-colors">
+              className="bg-amber-400 hover:bg-amber-300 disabled:opacity-40 text-neutral-950 font-bold text-xs px-4 py-2 rounded-xl transition-colors">
               {posting ? 'Posting…' : 'Post Comment'}
             </button>
           </div>
@@ -136,7 +136,7 @@ function CommentSection({ buildId }) {
                           : <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-teal-400">{c.author?.name?.charAt(0)}</span>}
                       </div>
                       {c.author?._id ? (
-                        <Link to={`/users/${c.author._id}`} className="text-sm font-bold text-neutral-200 hover:text-teal-400 transition-colors" onClick={e => e.stopPropagation()}>
+                        <Link to={`/users/${c.author._id}`} className="text-sm font-bold text-neutral-200 hover:text-amber-400 transition-colors" onClick={e => e.stopPropagation()}>
                           {c.author.name}
                         </Link>
                       ) : (
@@ -270,6 +270,7 @@ export default function BuildView() {
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/95 via-neutral-900/70 to-transparent" />
+        <div className="halftone absolute inset-y-0 right-0 w-56 opacity-40 [mask-image:linear-gradient(to_left,black,transparent)]" aria-hidden="true" />
         <div className="relative z-10 flex items-center justify-between gap-6 p-8">
           <div className="flex items-center gap-6">
             <div className="w-16 h-20 relative rounded-xl overflow-hidden border border-neutral-700 shrink-0">
@@ -277,9 +278,9 @@ export default function BuildView() {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-teal-400 mb-1">{build.hero?.name}</p>
-              <h1 className="text-3xl font-black text-white leading-tight">{build.title}</h1>
+              <h1 className="font-display text-2xl sm:text-3xl text-neutral-100 leading-tight">{build.title}</h1>
               <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                <p className="text-teal-400 font-mono font-bold">{build.totalCost?.toLocaleString()} Souls</p>
+                <p className="text-amber-400 font-mono font-bold">{build.totalCost?.toLocaleString()} Souls</p>
                 {build.role && <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 bg-neutral-800 px-2 py-0.5 rounded-full">{build.role}</span>}
                 {build.patch && <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 bg-neutral-800 px-2 py-0.5 rounded-full">Patch {build.patch}</span>}
                 {build.updatedAt && build.updatedAt !== build.createdAt && (
@@ -290,7 +291,7 @@ export default function BuildView() {
                 <div className="flex items-center gap-2 mt-3 pt-3 border-t border-neutral-700">
                   <span className="text-xs text-neutral-500">By</span>
                   {build.author._id ? (
-                    <Link to={`/users/${build.author._id}`} className="text-sm font-bold text-teal-400 hover:text-teal-300 transition-colors">
+                    <Link to={`/users/${build.author._id}`} className="text-sm font-bold text-amber-400 hover:text-amber-300 transition-colors">
                       {build.author.name}
                     </Link>
                   ) : (
@@ -306,7 +307,7 @@ export default function BuildView() {
             {!isLocalId && (
               <div className="flex items-center gap-1">
                 <button onClick={() => vote('up')} disabled={voting || !user}
-                  className="flex flex-col items-center bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 hover:border-teal-500/40 rounded-xl px-3 py-2 transition-all disabled:opacity-50">
+                  className="flex flex-col items-center bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 hover:border-amber-500/40 rounded-xl px-3 py-2 transition-all disabled:opacity-50">
                   <span className="text-amber-500 text-sm leading-none">▲</span>
                   <span className="font-mono font-bold text-sm text-neutral-200 mt-0.5">{net}</span>
                 </button>
@@ -320,7 +321,7 @@ export default function BuildView() {
               {(isOwner || isAdmin) && !isLocalId && (
                 <>
                   <button onClick={() => navigate(`/builds/${id}/edit`)}
-                    className="text-xs font-bold text-neutral-400 hover:text-teal-400 bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-lg transition-colors">
+                    className="text-xs font-bold text-neutral-400 hover:text-amber-400 bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-lg transition-colors">
                     Edit
                   </button>
                   <button onClick={deleteBuild} disabled={deleting}
@@ -363,7 +364,7 @@ export default function BuildView() {
 
       {/* Items */}
       <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 mb-4">Item Build</p>
+        <span className="ribbon text-sm mb-5">Item Build</span>
         <div className="flex flex-wrap gap-4">
           {filledItems.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-1.5">
@@ -380,7 +381,7 @@ export default function BuildView() {
       {/* Guide */}
       {hasGuide && (
         <div className="space-y-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Build Guide</p>
+          <span className="ribbon text-sm">Build Guide</span>
           {GUIDE_PHASES.filter(({ key }) => build.guide[key]).map(({ key, label, color, dot, bar }) => (
             <div key={key} className={`rounded-2xl border overflow-hidden ${bar}`}>
               <div className="flex items-center gap-2.5 px-5 py-3 border-b border-white/5">
@@ -396,7 +397,7 @@ export default function BuildView() {
       {/* Video */}
       {build.video && (
         <div className="space-y-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Video Guide</p>
+          <span className="ribbon text-sm">Video Guide</span>
           <div className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden">
             <div className="aspect-video">
               <iframe

@@ -59,11 +59,11 @@ function ReplyBox({ placeholder = 'Write a reply…', onSubmit, onCancel, autoFo
         value={body}
         onChange={e => setBody(e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600 leading-relaxed"
+        className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600 leading-relaxed"
       />
       <div className="flex items-center gap-2">
         <button type="submit" disabled={saving || !body.trim()}
-          className="bg-teal-500 hover:bg-teal-400 disabled:opacity-40 text-black font-black text-xs px-4 py-2 rounded-lg transition-colors">
+          className="bg-amber-400 hover:bg-amber-300 disabled:opacity-40 text-neutral-950 font-black text-xs px-4 py-2 rounded-lg transition-colors">
           {saving ? 'Posting…' : 'Post Reply'}
         </button>
         {onCancel && (
@@ -180,13 +180,13 @@ export default function ForumThreadPage() {
   };
 
   if (loading) return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] flex items-center justify-center">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 flex items-center justify-center">
       <p className="text-neutral-500 animate-pulse">Loading…</p>
     </main>
   );
 
   if (!thread) return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] flex items-center justify-center">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 flex items-center justify-center">
       <p className="text-neutral-500">Thread not found.</p>
     </main>
   );
@@ -204,7 +204,7 @@ export default function ForumThreadPage() {
   });
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
       <div className="max-w-3xl mx-auto space-y-8">
 
         {/* Breadcrumb */}
@@ -230,7 +230,7 @@ export default function ForumThreadPage() {
                 {thread.locked && <span className="text-[9px] text-neutral-500 font-bold">🔒 Locked</span>}
                 <span className="text-[11px] text-neutral-600 ml-auto">{timeAgo(thread.createdAt)}</span>
               </div>
-              <h1 className="text-2xl font-black text-white leading-snug">{thread.title}</h1>
+              <h1 className="font-display text-2xl text-neutral-100 leading-snug">{thread.title}</h1>
             </div>
           </div>
 

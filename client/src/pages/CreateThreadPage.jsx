@@ -32,7 +32,7 @@ export default function CreateThreadPage() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
       <div className="max-w-2xl mx-auto space-y-8">
 
         <div>
@@ -41,8 +41,8 @@ export default function CreateThreadPage() {
             <span>/</span>
             <span className="text-neutral-400">New Thread</span>
           </nav>
-          <h1 className="text-3xl font-black tracking-tight">
-            Start a <span className="text-teal-400">Discussion</span>
+          <h1 className="font-display text-3xl text-neutral-100">
+            Start a <span className="text-amber-400">Discussion</span>
           </h1>
           <p className="text-sm text-neutral-500 mt-1">Post a question, share an opinion, or spark a debate.</p>
         </div>
@@ -74,7 +74,7 @@ export default function CreateThreadPage() {
               value={title}
               onChange={e => setTitle(e.target.value)}
               placeholder="What's on your mind?"
-              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600"
+              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600"
             />
             <p className="text-[10px] text-neutral-600 mt-1 text-right">{title.length}/200</p>
           </div>
@@ -88,7 +88,7 @@ export default function CreateThreadPage() {
               value={body}
               onChange={e => setBody(e.target.value)}
               placeholder="Write your post here…"
-              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-teal-500/40 placeholder:text-neutral-600 leading-relaxed"
+              className="w-full bg-neutral-950 border border-neutral-800 text-neutral-100 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-amber-500/40 placeholder:text-neutral-600 leading-relaxed"
             />
             <p className="text-[10px] text-neutral-600 mt-1 text-right">{body.length}/5000</p>
           </div>
@@ -99,7 +99,7 @@ export default function CreateThreadPage() {
 
           <div className="flex items-center gap-3 pt-1">
             <button type="submit" disabled={saving}
-              className="bg-teal-500 hover:bg-teal-400 disabled:opacity-40 text-black font-black text-sm px-6 py-2.5 rounded-xl transition-colors active:scale-[0.98]">
+              className="bg-amber-400 hover:bg-amber-300 disabled:opacity-40 text-neutral-950 font-black text-sm px-6 py-2.5 rounded-xl transition-colors active:scale-[0.98]">
               {saving ? 'Posting…' : 'Post Thread'}
             </button>
             <Link to="/forums" className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors">

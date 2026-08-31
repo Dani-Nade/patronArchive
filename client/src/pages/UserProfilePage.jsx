@@ -26,7 +26,7 @@ export default function UserProfilePage() {
   }, [id]);
 
   if (loading) return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-8 pt-8 pb-16 font-sans">
       <div className="max-w-3xl mx-auto">
         <div className="text-center py-20 text-neutral-500 animate-pulse">Loading profile…</div>
       </div>
@@ -34,7 +34,7 @@ export default function UserProfilePage() {
   );
 
   if (error || !user) return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-8 pt-8 pb-16 font-sans">
       <div className="max-w-3xl mx-auto">
         <div className="text-center py-20">
           <p className="text-red-400 font-bold text-sm">{error || 'User not found'}</p>
@@ -49,7 +49,7 @@ export default function UserProfilePage() {
   const isOwnProfile = currentUser?._id === user.id;
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-[#0a0a0a] text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
+    <main className="min-h-[calc(100vh-64px)] bg-neutral-950 text-neutral-50 px-4 sm:px-8 pt-8 pb-16 font-sans">
       <div className="max-w-3xl mx-auto space-y-10">
 
         {/* Profile Header */}
@@ -69,7 +69,7 @@ export default function UserProfilePage() {
             </div>
           </div>
           {isOwnProfile && (
-            <a href="/profile" className="self-start sm:self-auto bg-teal-500 hover:bg-teal-400 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors shrink-0">
+            <a href="/profile" className="self-start sm:self-auto bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-sm px-5 py-2.5 rounded-xl transition-colors shrink-0">
               Edit Profile
             </a>
           )}

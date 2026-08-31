@@ -122,14 +122,14 @@ export default function BuildsList({ search = '', role = '', sort = '', patch = 
         const teaser = build.guide?.early || build.guide?.mid || build.guide?.late;
         return (
           <Link key={id} to={`/builds/${id}`}
-            className="flex items-start gap-5 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/80 rounded-2xl p-5 transition-all group">
+            className="flex items-start gap-5 bg-neutral-900 border border-neutral-800 hover:border-amber-500/30 hover:shadow-glow-amber rounded-2xl p-5 transition-all group">
 
             <HeroAvatar build={build} />
 
             <div className="flex-1 min-w-0 space-y-2">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="font-black text-lg text-teal-400 group-hover:text-teal-300 transition-colors leading-tight">
+                  <h3 className="font-black text-lg text-neutral-100 group-hover:text-amber-300 transition-colors leading-tight">
                     {build.title}
                   </h3>
                   <p className="text-xs text-neutral-500 mt-0.5">
@@ -138,7 +138,7 @@ export default function BuildsList({ search = '', role = '', sort = '', patch = 
                       <>
                         {' · by '}
                         {build.author._id ? (
-                          <Link to={`/users/${build.author._id}`} className="text-neutral-300 hover:text-teal-400 transition-colors" onClick={e => e.stopPropagation()}>
+                          <Link to={`/users/${build.author._id}`} className="text-neutral-300 hover:text-amber-400 transition-colors" onClick={e => e.stopPropagation()}>
                             {build.author.name}
                           </Link>
                         ) : (
@@ -179,7 +179,7 @@ export default function BuildsList({ search = '', role = '', sort = '', patch = 
                   ))}
                 </div>
                 <SlotBar items={build.items} />
-                <span className="text-teal-400 font-mono font-bold text-sm ml-auto">
+                <span className="text-amber-400 font-mono font-bold text-sm ml-auto">
                   {build.totalCost?.toLocaleString()} <span className="text-neutral-600 font-normal text-xs">souls</span>
                 </span>
               </div>

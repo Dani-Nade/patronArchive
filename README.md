@@ -9,6 +9,7 @@ A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Pl
 ## Contents
 
 - [What it does](#what-it-does)
+- [Design language](#design-language)
 - [Screens](#screens)
 - [The Archivist](#the-archivist)
 - [Architecture](#architecture)
@@ -35,6 +36,23 @@ A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Pl
 **The Archivist.** A chat assistant sits on every page and answers questions about builds, items and strategy. It is retrieval-augmented: the answer is generated only from passages retrieved out of this site's own item catalogue, published builds and forum discussion. Ask it on a build page and it answers about *that* build. It runs on a local model by default — no API key, no cost — and can be pointed at Claude instead. See [The Archivist](#the-archivist) below.
 
 **Moderation.** Text submitted to builds, comments and forum posts is screened by Sightengine before it goes live. Anything that trips the filter comes back to the author, who can revise or post anyway — posting anyway auto-flags the content into the admin queue. Readers can also report content by hand. Admins work a single queue, and removals put strikes on the author's account; three strikes suspends it.
+
+---
+
+## Design language
+
+The UI is styled after Deadlock's own identity — the palette and printed-matter texture of the official *Old Gods, New Blood* page — rather than a generic dark theme, so the game's parchment-toned item icons and painted hero portraits sit in the interface as if they belong to it.
+
+| Token | Value | Role |
+|---|---|---|
+| Ground | warm charcoal ramp, `#14110d` → `#2c2822` | page, cards, borders |
+| Ink | parchment cream `#ece5d6` | text |
+| Marigold | `#f7ac2e` | primary actions, brand mark, soul costs |
+| Vermillion | `#e25e31` | hand-cut section ribbons, admin accents |
+| Teal | `#2dd4bf` | secondary accent — links, forums, the Archivist |
+| Slot colors | amber / green / purple | weapon / vitality / spirit, matching the in-game shop |
+
+Type is **Alfa Slab One** for display (a poster-slab stand-in for the game's hand lettering) over **Inter** for UI, both self-hosted through Fontsource so nothing is fetched at runtime. The furniture comes from the official page: a faint film-grain wash over everything, halftone dot fields in hero corners, tilted clip-path ribbons for section labels, torn-paper edges between home-page bands, and the roster fanned out as tilted poster cards. All of it lives in two places — the token overrides in [tailwind.config.js](client/tailwind.config.js) and the component classes in [index.css](client/src/index.css) — so the system applies to every screen without per-page styling.
 
 ---
 

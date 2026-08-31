@@ -11,10 +11,11 @@ const NAV = [
 ];
 
 export default function AdminLayout() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const close = () => setSidebarOpen(false);
 
+  if (loading) return null;
   if (!user) return <Navigate to="/login" replace />;
 
   if (user.role !== 'admin') return (

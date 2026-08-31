@@ -8,15 +8,16 @@ export default function LoginPage() {
   const redirect = searchParams.get('redirect');
   const { login, user, loading } = useAuth();
 
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError]       = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
   useEffect(() => {
     if (!loading && user) navigate(redirect || (user.role === 'admin' ? '/admin' : '/'), { replace: true });
   }, [user, loading, navigate, redirect]);
 
   if (loading) return null;
-  const [email, setEmail]       = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError]       = useState('');
-  const [submitting, setSubmitting] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();

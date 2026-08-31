@@ -63,20 +63,21 @@
   <text x="915" y="326" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#2dd4bf" font-weight="700">Select</text>
   <text x="915" y="356" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Per-source caps stop items</text>
   <text x="915" y="373" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">crowding out guide prose.</text>
-  <text x="915" y="390" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">Top 12 passages go forward</text>
-  <text x="40" y="468" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fbbf24" font-weight="600" letter-spacing="0.6">3 · GENERATION — claude-opus-5</text>
+  <text x="915" y="390" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">The top 6-12 go forward</text>
+  <text x="40" y="468" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fbbf24" font-weight="600" letter-spacing="0.6">3 · GENERATION — a local model by default, or Claude</text>
   <rect x="40" y="484" width="354" height="112" rx="12" fill="#131313" stroke="#78350f"/>
   <rect x="40" y="484" width="354" height="34" rx="12" fill="#1c1508"/>
   <text x="54" y="506" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="700">Prompt</text>
-  <text x="54" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Grounding rules, the 12 retrieved passages, and the</text>
-  <text x="54" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">last 8 turns of the conversation</text>
+  <text x="54" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Grounding rules, the retrieved passages, and the last 8</text>
+  <text x="54" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">turns. The local path takes 6 passages rather than 12 and</text>
+  <text x="54" y="570" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">repeats the hard rules just before the question</text>
   <line x1="398" y1="540" x2="418" y2="540" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ar)"/>
   <rect x="422" y="484" width="354" height="112" rx="12" fill="#131313" stroke="#78350f"/>
   <rect x="422" y="484" width="354" height="34" rx="12" fill="#1c1508"/>
   <text x="436" y="506" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="700">Answer</text>
-  <text x="436" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Adaptive thinking at medium effort. The model is held</text>
-  <text x="436" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">to the passages: it will not invent an item name, a cost</text>
-  <text x="436" y="570" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">or a hero ability, and says so when the context runs out</text>
+  <text x="436" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">A 7-8B model on your own GPU, free and offline — or</text>
+  <text x="436" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">claude-opus-5 with a key. Either way the model is held to</text>
+  <text x="436" y="570" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">the passages, and says so when the context runs out</text>
   <line x1="780" y1="540" x2="800" y2="540" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ar)"/>
   <rect x="804" y="484" width="354" height="112" rx="12" fill="#131313" stroke="#78350f"/>
   <rect x="804" y="484" width="354" height="34" rx="12" fill="#1c1508"/>

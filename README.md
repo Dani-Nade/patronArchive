@@ -32,7 +32,7 @@ A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Pl
 
 **Community.** Every build has a comment thread. Broader discussion lives in a separate forum with five categories, nested replies, upvotes, and pin/lock controls for admins.
 
-**The Archivist.** A chat assistant sits on every page and answers questions about builds, items and strategy. It is retrieval-augmented: the answer is written by Claude, but only from passages retrieved out of this site's own item catalogue, published builds and forum discussion. Ask it on a build page and it answers about *that* build. See [The Archivist](#the-archivist) below.
+**The Archivist.** A chat assistant sits on every page and answers questions about builds, items and strategy. It is retrieval-augmented: the answer is generated only from passages retrieved out of this site's own item catalogue, published builds and forum discussion. Ask it on a build page and it answers about *that* build. It runs on a local model by default — no API key, no cost — and can be pointed at Claude instead. See [The Archivist](#the-archivist) below.
 
 **Moderation.** Text submitted to builds, comments and forum posts is screened by Sightengine before it goes live. Anything that trips the filter comes back to the author, who can revise or post anyway — posting anyway auto-flags the content into the admin queue. Readers can also report content by hand. Admins work a single queue, and removals put strikes on the author's account; three strikes suspends it.
 
@@ -120,21 +120,41 @@ A retrieval-augmented chat assistant, reachable from the bottom-left of every pa
 
 **Grounding.** The widget also sends the build or hero of the page in view, and those passages are pinned into the context — which is what lets "what should I buy next?" resolve against the build you are reading. The system prompt holds the model to the retrieved passages: it must not invent an item name, a cost or a hero ability, it must quote soul costs exactly as they appear, and it must say when the context does not cover the question. Catalogue data is treated as authoritative; guides and forum replies are attributed as opinion.
 
-**Answering.** `claude-opus-5` with adaptive thinking at medium effort. The reply streams back over server-sent events — sources first, so the panel can show them while the text is still arriving.
+**Answering.** Two interchangeable backends. Retrieval is identical either way; only the final call differs.
+
+| | `CHAT_PROVIDER=local` (default) | `CHAT_PROVIDER=anthropic` |
+|---|---|---|
+| Model | Whatever your local server has loaded | `claude-opus-5`, adaptive thinking at medium effort |
+| Needs | LM Studio, Ollama or llama.cpp on `:1234` | An API key |
+| Cost | Nothing | ~1,500 input + ~800 output tokens a question, so roughly **3¢** on Opus |
+| Passages sent | 6, trimmed to 700 characters | 12, untrimmed |
+| Works offline | Yes | No |
+
+The local path is not just the Anthropic path with a different URL. Small models confabulate confidently when the context is silent — an early test invented a 20-second cooldown for an ability the corpus says nothing about — so it retrieves fewer passages to fit a 4k context, runs at temperature 0.15, and repeats the hard grounding rules immediately *before* the question rather than only in the system prompt, which is where small models actually weight them. With that in place the same question returns "The Archive doesn't cover that".
+
+Either way the reply streams back over server-sent events — sources first, so the panel can show them while the text is still arriving.
 
 ### Setting it up
 
-```bash
-# 1. add your key to server/.env
-ANTHROPIC_API_KEY=sk-ant-...
+**Free, local, no key.** Start any OpenAI-compatible server — [LM Studio](https://lmstudio.ai)'s server, or `ollama serve` — load a 7–8B instruct model, then:
 
-# 2. build the knowledge base (needs MONGO_URI set and the app seeded)
+```bash
 npm run ingest --prefix server
+```
+
+That is the whole setup. `LOCAL_LLM_URL` defaults to `http://localhost:1234/v1` (LM Studio; use `http://localhost:11434/v1` for Ollama), and leaving `LOCAL_LLM_MODEL` blank makes the server ask which model is loaded.
+
+On model choice: prefer an instruction-tuned model that still refuses. "Abliterated" or "uncensored" variants have had refusal behaviour trained out of them, which is the opposite of what grounded retrieval wants — measured against the same questions, `hermes-3-llama-3.1-8b` declined an out-of-scope question cleanly while an abliterated Qwen 2.5 answered it anyway with padding. An 8B model at Q4 fits in 6 GB of VRAM and answers in one to two seconds once loaded.
+
+**Or use Claude.** Put a key in `server/.env` and the provider switches automatically:
+
+```bash
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
 The index rebuilds from scratch each time. Publishing or editing a build re-indexes that build on its own, in the background, so new guides are answerable immediately; forum content is picked up on the next full ingest. Admins can trigger a rebuild without shell access by calling `POST /api/chat/reindex`.
 
-Both halves degrade honestly. Without `ANTHROPIC_API_KEY` the widget says so and disables its input rather than failing at send time; with an empty index it tells you to run the ingest. The endpoint is open to guests but rate limited per IP (15 messages per 10 minutes, 60 for signed-in users) so an unauthenticated endpoint cannot run up a bill.
+Both halves degrade honestly. `GET /api/chat/status` reports which provider resolved, which model it found and why it is unusable if it is not — and the widget renders that reason and disables its input rather than failing at send time. An empty index tells you to run the ingest. The endpoint is open to guests but rate limited per IP (15 messages per 10 minutes, 60 for signed-in users) so an unauthenticated endpoint cannot run up a bill.
 
 ### Placement
 
@@ -176,7 +196,7 @@ A build stores an embedded *snapshot* of its hero and items rather than referenc
 | Backend | Node.js (ES modules), Express 4, Mongoose 8 |
 | Database | MongoDB |
 | Auth | JWT (`jsonwebtoken`), passwords hashed with `bcryptjs` at 10 rounds |
-| Assistant | `claude-opus-5` via `@anthropic-ai/sdk`, streamed over SSE |
+| Assistant | Any local OpenAI-compatible server (LM Studio, Ollama) by default, or `claude-opus-5` via `@anthropic-ai/sdk` — both streamed over SSE |
 | Embeddings | `all-MiniLM-L6-v2` run locally through `@huggingface/transformers` (384-d) |
 | Retrieval | Vectors in MongoDB, brute-force cosine in process — no vector database |
 | External data | Deadlock Assets API, YouTube Data API v3, Sightengine text moderation |
@@ -252,8 +272,11 @@ All of these live in `server/.env`. The client needs no configuration.
 | `YOUTUBE_API_KEY` | no | YouTube Data API v3 key. Without it, `/api/youtube` returns 500 and builds simply carry no video. |
 | `SIGHTENGINE_USER` | no | Sightengine API user. Without it the profanity filter is skipped entirely. |
 | `SIGHTENGINE_SECRET` | no | Sightengine API secret. |
-| `ANTHROPIC_API_KEY` | no | Enables the Archivist. Without it the widget renders a "not configured" notice instead of accepting questions. |
-| `CHAT_EFFORT` | no | Reasoning effort for the assistant: `low`, `medium` (default), `high`, `xhigh` or `max`. Lower is faster and cheaper. |
+| `CHAT_PROVIDER` | no | `local` or `anthropic`. Defaults to `anthropic` when `ANTHROPIC_API_KEY` is set, otherwise `local`. |
+| `LOCAL_LLM_URL` | no | OpenAI-compatible endpoint. Defaults to `http://localhost:1234/v1` (LM Studio). Ollama is `http://localhost:11434/v1`. |
+| `LOCAL_LLM_MODEL` | no | Model id to use. Blank asks the local server which model is loaded and takes the first non-embedding one. |
+| `ANTHROPIC_API_KEY` | no | Switches the assistant to Claude. Billed per token — see the table in [The Archivist](#the-archivist). |
+| `CHAT_EFFORT` | no | Claude only. Reasoning effort: `low`, `medium` (default), `high`, `xhigh` or `max`. Lower is faster and cheaper. |
 
 > **Note:** `server/.env.example` in this repository currently contains real API credentials rather than placeholders. Treat those keys as compromised — rotate them at the provider and replace the file's values with placeholders.
 
@@ -337,7 +360,7 @@ All responses are JSON and carry a `success` boolean. Endpoints marked **JWT** r
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| `GET` | `/api/chat/status` | — | Whether the assistant is configured, plus index size by source |
+| `GET` | `/api/chat/status` | — | Resolved provider and model, why it is unusable if it is not, and index size by source |
 | `POST` | `/api/chat` | optional | Ask a question. Streams `sources`, then `delta` events, then `done`, as SSE. Body: `message`, `history[]`, `page`, `buildId`, `hero` |
 | `POST` | `/api/chat/reindex` | Admin | Rebuild the whole knowledge base |
 
@@ -405,6 +428,8 @@ Honest state of the codebase, for anyone picking it up:
 - **In-process caching.** Hero and item caches are module-level variables, so they are per-process and lost on restart. The same is true of the retrieval chunk cache and the assistant's rate limiter — both reset on restart and neither is shared across instances.
 - **Retrieval is brute force.** Every question scores against every chunk in memory. That is the right trade at a few hundred passages; past roughly ten thousand it wants a real vector index.
 - **Embedding quality is the ceiling.** `all-MiniLM-L6-v2` is small. It handles named things well — heroes, items, build titles — and is weaker on paraphrased intent, so a question like "how do I stop dying to burst damage" retrieves less precisely than a question naming an item. Swapping in a hosted embedding model would be a drop-in change to `server/utils/embeddings.js`.
+- **A 7–8B local model is not Claude.** With the hardened prompt it stops fabricating whole mechanics and refuses out-of-scope questions, and it quotes costs correctly. It still occasionally misreads a stat label — one answer rendered "Grants: Out of Combat Regen 4" as "reduces Out-of-Combat Regen by 4" — and it tends toward generic reasoning around a correct recommendation. Set `ANTHROPIC_API_KEY` when accuracy matters more than cost.
+- **Hero passages are thin.** The assets API exposes hero names and portraits but not ability descriptions or cooldowns, so the Archivist genuinely cannot answer ability questions and will say so. Adding a hero-ability source would be the single biggest improvement to answer coverage.
 - **Forum content is only indexed on a full ingest.** Builds re-index themselves on publish and edit; threads and replies wait for the next `npm run ingest` or an admin reindex.
 - **No automated tests.** There is no test runner configured in any of the three packages.
 - **Vote counts are recomputed from arrays** on every read. Correct, and fine at this size, but it is a full array scan per build.

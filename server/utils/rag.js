@@ -29,19 +29,35 @@ async function itemChunks() {
   return data
     .filter(i => i.shopable && i.name && i.cost > 0)
     .map(i => {
-      const stats = (i.tooltip_sections ?? []).flatMap(s => {
-        const attr = s.section_attributes?.[0] ?? {};
-        const keys = [...(attr.important_properties ?? []), ...(attr.properties ?? [])];
-        return keys
-          .map(k => i.properties?.[k])
-          .filter(p => p?.label && p.value != null && p.value !== p.disable_value)
-          .map(p => `${p.label} ${p.value}${p.postfix ?? ''}`);
-      });
+      // elevated_properties carries an item's headline effect and is easy to miss;
+      // without it a passage can describe a item purely by its minor stats, which
+      // invites the model to fill the gap itself.
+      const keys = (i.tooltip_sections ?? []).flatMap(s =>
+        (s.section_attributes ?? []).flatMap(attr => [
+          ...(attr.elevated_properties ?? []),
+          ...(attr.important_properties ?? []),
+          ...(attr.properties ?? []),
+        ]));
+      const seen = new Set();
+      const stats = keys
+        .filter(k => !seen.has(k) && seen.add(k))
+        .map(k => i.properties?.[k])
+        .filter(p => p?.label && p.value != null && p.value !== p.disable_value)
+        .map(p => `${p.label} ${p.value}${p.postfix ?? ''}`.replace(/\s+/g, ' ').trim());
+
+      const blurbs = (i.tooltip_sections ?? []).flatMap(s =>
+        (s.section_attributes ?? []).map(attr => clean((attr.loc_string ?? '').replace(/<[^>]+>/g, ' '))))
+        .filter(Boolean);
       const slot = i.item_slot_type ? `${i.item_slot_type} slot` : 'item';
       const desc = clean((i.description?.desc ?? '').replace(/<[^>]+>/g, ' '));
+      // desc and a section blurb are often the same sentence — keep it once.
+      const prose = [];
+      for (const piece of [desc, ...blurbs]) {
+        if (piece && !prose.some(p => p === piece)) prose.push(piece);
+      }
       const text = [
         `${i.name} — tier ${i.item_tier ?? 1} ${slot}, costs ${money(i.cost)} souls.`,
-        desc,
+        ...prose,
         stats.length ? `Grants: ${stats.join('; ')}.` : '',
         i.activation && i.activation !== 'passive' ? `This is an active item (${i.activation}).` : 'This is a passive item.',
       ].filter(Boolean).join(' ');

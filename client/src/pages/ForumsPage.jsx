@@ -37,7 +37,7 @@ function timeAgo(iso) {
 function HotCard({ thread, rank }) {
   return (
     <Link to={`/forums/${thread._id}`}
-      className="relative bg-neutral-900 border border-neutral-800 hover:border-teal-500/40 hover:shadow-[0_0_24px_rgba(20,184,166,0.08)] rounded-2xl p-5 flex flex-col gap-3 transition-all group">
+      className="relative bg-neutral-900 border border-neutral-800 hover:border-teal-500/40 hover:-translate-y-1 hover:shadow-press rounded-2xl p-5 flex flex-col gap-3 transition-all group">
       <div className="flex items-start justify-between gap-2">
         <span className="w-6 h-6 rounded-full bg-black/60 border border-neutral-700 flex items-center justify-center text-[10px] font-black text-teal-400 shrink-0">
           #{rank}
@@ -165,7 +165,7 @@ export default function ForumsPage() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <span className="ribbon text-sm mb-4">Community Discussion</span>
-              <h1 className="font-display text-4xl text-neutral-100">
+              <h1 className="font-display text-5xl sm:text-6xl text-neutral-100 leading-none">
                 Community <span className="text-amber-400">Forums</span>
               </h1>
               <p className="text-sm text-neutral-500 mt-1.5 max-w-lg">

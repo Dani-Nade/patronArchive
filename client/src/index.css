@@ -62,7 +62,7 @@ body::after {
   }
 
   .btn-primary {
-    @apply bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black rounded-lg transition-all active:scale-95;
+    @apply bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display rounded-lg transition-all shadow-press-sm hover:-translate-y-0.5 hover:translate-x-0 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none;
   }
   .btn-secondary {
     @apply bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold rounded-lg border border-neutral-700 transition-all;
@@ -72,5 +72,20 @@ body::after {
   .halftone {
     background-image: radial-gradient(rgba(236, 229, 214, 0.13) 1px, transparent 1.6px);
     background-size: 13px 13px;
+  }
+  /* Dark-dot variant for the marigold band. */
+  .halftone-ink {
+    background-image: radial-gradient(rgba(20, 17, 13, 0.28) 1.4px, transparent 1.9px);
+    background-size: 12px 12px;
+  }
+
+  /* Outlined ghost display type — the oversized background lettering. */
+  .text-stroke-cream {
+    -webkit-text-stroke: 1.5px rgba(236, 229, 214, 0.10);
+    color: transparent;
+  }
+  .text-stroke-ink {
+    -webkit-text-stroke: 2.5px #14110d;
+    color: transparent;
   }
 }

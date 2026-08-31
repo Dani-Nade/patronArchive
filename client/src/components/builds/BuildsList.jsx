@@ -122,7 +122,7 @@ export default function BuildsList({ search = '', role = '', sort = '', patch = 
         const teaser = build.guide?.early || build.guide?.mid || build.guide?.late;
         return (
           <Link key={id} to={`/builds/${id}`}
-            className="flex items-start gap-5 bg-neutral-900 border border-neutral-800 hover:border-amber-500/30 hover:shadow-glow-amber rounded-2xl p-5 transition-all group">
+            className="flex items-start gap-5 bg-neutral-900 border border-neutral-800 hover:border-amber-500/40 hover:-translate-y-1 hover:shadow-press rounded-2xl p-5 transition-all group">
 
             <HeroAvatar build={build} />
 

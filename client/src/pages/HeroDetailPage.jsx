@@ -21,7 +21,7 @@ function BuildCard({ build, rank }) {
 
   return (
     <Link to={`/builds/${id}`}
-      className="relative bg-neutral-900 border border-neutral-800 hover:border-amber-500/30 hover:shadow-glow-amber rounded-2xl p-4 transition-all group">
+      className="relative bg-neutral-900 border border-neutral-800 hover:border-amber-500/30 hover:-translate-y-1 hover:shadow-press rounded-2xl p-4 transition-all group">
 
       {rank <= 3 && (
         <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-black shadow-lg"

@@ -52,7 +52,9 @@ The UI is styled after Deadlock's own identity — the palette and printed-matte
 | Teal | `#2dd4bf` | secondary accent — links, forums, the Archivist |
 | Slot colors | amber / green / purple | weapon / vitality / spirit, matching the in-game shop |
 
-Type is **Alfa Slab One** for display (a poster-slab stand-in for the game's hand lettering) over **Inter** for UI, both self-hosted through Fontsource so nothing is fetched at runtime. The furniture comes from the official page: a faint film-grain wash over everything, halftone dot fields in hero corners, tilted clip-path ribbons for section labels, torn-paper edges between home-page bands, and the roster fanned out as tilted poster cards. All of it lives in two places — the token overrides in [tailwind.config.js](client/tailwind.config.js) and the component classes in [index.css](client/src/index.css) — so the system applies to every screen without per-page styling.
+Type is **Alfa Slab One** for display (a poster-slab stand-in for the game's hand lettering) over **Inter** for UI, both self-hosted through Fontsource so nothing is fetched at runtime.
+
+The composition is poster-built, not card-template: an asymmetric home hero with oversized outlined ghost lettering bleeding off the edges, a tilted vermillion marquee ticker of the roster, layered hero-portrait collages with marigold offset frames, giant unboxed slab statistics, a full-bleed marigold band with outlined numerals (the official page's *Hidden King* move), hand-cut clip-path ribbons for section labels, torn-paper edges between bands, hard offset "screen-print" shadows on cards and buttons, a faint film-grain wash over everything, and a proper poster footer. The system lives in three places — token overrides in [tailwind.config.js](client/tailwind.config.js), component classes in [index.css](client/src/index.css), and the shared [TornEdge](client/src/components/layout/TornEdge.jsx)/[Footer](client/src/components/layout/Footer.jsx) — so it applies across screens without per-page styling.
 
 ---
 

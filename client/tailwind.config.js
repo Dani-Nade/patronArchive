@@ -61,6 +61,16 @@ export default {
         'glow-amber': '0 0 28px rgba(247, 172, 46, 0.18)',
         'glow-teal': '0 0 28px rgba(45, 212, 191, 0.15)',
         'card': '0 2px 12px rgba(0, 0, 0, 0.4)',
+        // Hard offset shadows — the screen-print look from the official page.
+        'press': '5px 5px 0 0 rgba(0, 0, 0, 0.55)',
+        'press-sm': '3px 3px 0 0 rgba(0, 0, 0, 0.55)',
+        'press-amber': '5px 5px 0 0 rgba(247, 172, 46, 0.85)',
+      },
+      keyframes: {
+        marquee: { to: { transform: 'translateX(-50%)' } },
+      },
+      animation: {
+        marquee: 'marquee 36s linear infinite',
       },
     },
   },

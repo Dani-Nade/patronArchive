@@ -5,7 +5,7 @@ import api from '../lib/api.js';
 function HeroCard({ hero, buildCount }) {
   return (
     <Link to={`/heroes/${encodeURIComponent(hero.name)}`}
-      className="bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 hover:shadow-glow-amber rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col">
+      className="bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 hover:-translate-y-1 hover:shadow-press rounded-xl overflow-hidden transition-all duration-300 group flex flex-col">
 
       <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden">
         {hero.images?.portrait ? (
@@ -96,9 +96,12 @@ export default function HeroesPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,rgba(247,172,46,0.08),transparent)]" />
         <div className="relative max-w-7xl mx-auto">
 
+          <span className="font-display text-[7rem] leading-none text-stroke-cream absolute -right-2 -top-6 rotate-[-3deg] select-none pointer-events-none whitespace-nowrap hidden md:block" aria-hidden="true">
+            HEROES
+          </span>
           <span className="ribbon text-sm mb-4">Hero Roster</span>
 
-          <h1 className="font-display text-4xl text-neutral-100">
+          <h1 className="font-display text-5xl sm:text-6xl text-neutral-100 leading-none">
             Hero <span className="text-amber-400">Directory</span>
           </h1>
           <p className="text-sm text-neutral-500 mt-1.5 max-w-xl">

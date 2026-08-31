@@ -66,7 +66,7 @@ export default function Header() {
               <Link to="/login" className="text-sm font-medium text-neutral-400 hover:text-neutral-100 transition-colors">
                 Log in
               </Link>
-              <Link to="/register" className="text-sm font-bold bg-amber-400 hover:bg-amber-300 text-neutral-950 px-4 py-2 rounded-lg transition-colors">
+              <Link to="/register" className="text-sm bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display px-4 py-1.5 rounded-lg shadow-press-sm transition-all hover:-translate-y-0.5 active:translate-y-[2px] active:shadow-none">
                 Sign up
               </Link>
             </>

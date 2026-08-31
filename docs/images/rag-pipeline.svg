@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#71717a"/></marker></defs>
+  <rect width="1200" height="640" fill="#0a0a0a"/>
+  <rect x="0.5" y="0.5" width="1199" height="639" rx="14" fill="none" stroke="#242424"/>
+  <text x="40" y="46" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="21" fill="#fafafa" font-weight="700">The Patron's Archive — How the Archivist Answers</text>
+  <text x="40" y="68" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#71717a" font-weight="400">Retrieval-augmented generation. Embeddings are computed locally, so the only outbound call is the answer itself.</text>
+  <text x="40" y="108" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#c084fc" font-weight="600" letter-spacing="0.6">1 · INDEXING — npm run ingest</text>
+  <rect x="40" y="124" width="259" height="112" rx="12" fill="#131313" stroke="#581c87"/>
+  <rect x="40" y="124" width="259" height="34" rx="12" fill="#150c1c"/>
+  <text x="54" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#c084fc" font-weight="700">Corpus</text>
+  <text x="54" y="176" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">173 shop items with costs,</text>
+  <text x="54" y="193" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">tiers and tooltip stats;</text>
+  <text x="54" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">57 heroes; every published</text>
+  <text x="54" y="227" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">build, guide phase and post</text>
+  <line x1="303" y1="180" x2="323" y2="180" stroke="#c084fc" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="327" y="124" width="259" height="112" rx="12" fill="#131313" stroke="#581c87"/>
+  <rect x="327" y="124" width="259" height="34" rx="12" fill="#150c1c"/>
+  <text x="341" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#c084fc" font-weight="700">Chunk</text>
+  <text x="341" y="176" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">One passage per record,</text>
+  <text x="341" y="193" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">written as plain prose so</text>
+  <text x="341" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">the embedder has something</text>
+  <text x="341" y="227" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">meaningful to work with</text>
+  <line x1="590" y1="180" x2="610" y2="180" stroke="#c084fc" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="614" y="124" width="259" height="112" rx="12" fill="#131313" stroke="#581c87"/>
+  <rect x="614" y="124" width="259" height="34" rx="12" fill="#150c1c"/>
+  <text x="628" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#c084fc" font-weight="700">Embed</text>
+  <text x="628" y="176" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">all-MiniLM-L6-v2 through</text>
+  <text x="628" y="193" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">transformers.js, in process.</text>
+  <text x="628" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">384 dimensions, mean-pooled</text>
+  <text x="628" y="227" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">and L2-normalised</text>
+  <line x1="877" y1="180" x2="897" y2="180" stroke="#c084fc" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="901" y="124" width="259" height="112" rx="12" fill="#131313" stroke="#581c87"/>
+  <rect x="901" y="124" width="259" height="34" rx="12" fill="#150c1c"/>
+  <text x="915" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#c084fc" font-weight="700">Store</text>
+  <text x="915" y="176" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">chunks collection in MongoDB:</text>
+  <text x="915" y="193" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">the text, its vector, a link</text>
+  <text x="915" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">back into the site, and a</text>
+  <text x="915" y="227" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">0–1 community-score weight</text>
+  <text x="40" y="288" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#2dd4bf" font-weight="600" letter-spacing="0.6">2 · RETRIEVAL — on every question</text>
+  <rect x="40" y="304" width="259" height="112" rx="12" fill="#131313" stroke="#134e4a"/>
+  <rect x="40" y="304" width="259" height="34" rx="12" fill="#07211f"/>
+  <text x="54" y="326" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#2dd4bf" font-weight="700">Question</text>
+  <text x="54" y="356" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">The widget also sends the</text>
+  <text x="54" y="373" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">build or hero of the page</text>
+  <text x="54" y="390" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">the reader is looking at</text>
+  <line x1="303" y1="360" x2="323" y2="360" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="327" y="304" width="259" height="112" rx="12" fill="#131313" stroke="#134e4a"/>
+  <rect x="327" y="304" width="259" height="34" rx="12" fill="#07211f"/>
+  <text x="341" y="326" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#2dd4bf" font-weight="700">Embed query</text>
+  <text x="341" y="356" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">The same model and the</text>
+  <text x="341" y="373" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">same vector space, so the</text>
+  <text x="341" y="390" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">comparison is meaningful</text>
+  <line x1="590" y1="360" x2="610" y2="360" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="614" y="304" width="259" height="112" rx="12" fill="#131313" stroke="#134e4a"/>
+  <rect x="614" y="304" width="259" height="34" rx="12" fill="#07211f"/>
+  <text x="628" y="326" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#2dd4bf" font-weight="700">Score</text>
+  <text x="628" y="356" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Cosine against every chunk,</text>
+  <text x="628" y="373" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">plus 0.08 × community score</text>
+  <text x="628" y="390" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">so well-rated builds float up</text>
+  <line x1="877" y1="360" x2="897" y2="360" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="901" y="304" width="259" height="112" rx="12" fill="#131313" stroke="#134e4a"/>
+  <rect x="901" y="304" width="259" height="34" rx="12" fill="#07211f"/>
+  <text x="915" y="326" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#2dd4bf" font-weight="700">Select</text>
+  <text x="915" y="356" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Per-source caps stop items</text>
+  <text x="915" y="373" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">crowding out guide prose.</text>
+  <text x="915" y="390" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">Top 12 passages go forward</text>
+  <text x="40" y="468" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fbbf24" font-weight="600" letter-spacing="0.6">3 · GENERATION — claude-opus-5</text>
+  <rect x="40" y="484" width="354" height="112" rx="12" fill="#131313" stroke="#78350f"/>
+  <rect x="40" y="484" width="354" height="34" rx="12" fill="#1c1508"/>
+  <text x="54" y="506" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="700">Prompt</text>
+  <text x="54" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Grounding rules, the 12 retrieved passages, and the</text>
+  <text x="54" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">last 8 turns of the conversation</text>
+  <line x1="398" y1="540" x2="418" y2="540" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="422" y="484" width="354" height="112" rx="12" fill="#131313" stroke="#78350f"/>
+  <rect x="422" y="484" width="354" height="34" rx="12" fill="#1c1508"/>
+  <text x="436" y="506" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="700">Answer</text>
+  <text x="436" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Adaptive thinking at medium effort. The model is held</text>
+  <text x="436" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">to the passages: it will not invent an item name, a cost</text>
+  <text x="436" y="570" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">or a hero ability, and says so when the context runs out</text>
+  <line x1="780" y1="540" x2="800" y2="540" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="804" y="484" width="354" height="112" rx="12" fill="#131313" stroke="#78350f"/>
+  <rect x="804" y="484" width="354" height="34" rx="12" fill="#1c1508"/>
+  <text x="818" y="506" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="700">Stream</text>
+  <text x="818" y="536" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">Server-sent events — the sources arrive first, then the</text>
+  <text x="818" y="553" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">text deltas, then the token usage. The panel renders it</text>
+  <text x="818" y="570" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">live and links each source back into the site</text>
+</svg>

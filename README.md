@@ -1,6 +1,6 @@
 # The Patron's Archive
 
-A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Players assemble item loadouts in a live calculator, publish them as phased written guides with an optional YouTube walkthrough, vote and argue about them in the comments, and take the longer discussions to a threaded forum. Admins get a moderation console on top of all of it.
+A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Players assemble item loadouts in a live calculator, publish them as phased written guides with an optional YouTube walkthrough, vote and argue about them in the comments, and take the longer discussions to a threaded forum. A retrieval-augmented assistant answers build and strategy questions from the site's own content. Admins get a moderation console on top of all of it.
 
 ![Home page](docs/images/home.png)
 
@@ -10,6 +10,7 @@ A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Pl
 
 - [What it does](#what-it-does)
 - [Screens](#screens)
+- [The Archivist](#the-archivist)
 - [Architecture](#architecture)
 - [Data model](#data-model)
 - [Roles and moderation](#roles-and-moderation)
@@ -30,6 +31,8 @@ A community build-and-strategy hub for **Deadlock**, built on the MERN stack. Pl
 **Discovery.** Builds are searchable by title, hero and author, filterable by role and patch, and sortable by newest or top-voted. Votes are stored as arrays of user ids rather than integer counters, so a single account can only ever count once and can change its mind.
 
 **Community.** Every build has a comment thread. Broader discussion lives in a separate forum with five categories, nested replies, upvotes, and pin/lock controls for admins.
+
+**The Archivist.** A chat assistant sits on every page and answers questions about builds, items and strategy. It is retrieval-augmented: the answer is written by Claude, but only from passages retrieved out of this site's own item catalogue, published builds and forum discussion. Ask it on a build page and it answers about *that* build. See [The Archivist](#the-archivist) below.
 
 **Moderation.** Text submitted to builds, comments and forum posts is screened by Sightengine before it goes live. Anything that trips the filter comes back to the author, who can revise or post anyway — posting anyway auto-flags the content into the admin queue. Readers can also report content by hand. Admins work a single queue, and removals put strikes on the author's account; three strikes suspends it.
 
@@ -99,6 +102,46 @@ The full roster, pulled from the assets API and cached server-side for an hour.
 
 ---
 
+## The Archivist
+
+![The Archivist](docs/images/chat-archivist.png)
+
+A retrieval-augmented chat assistant, reachable from the bottom-left of every page. It answers questions about builds, items and strategy — *what should I buy next*, *is this item worth the slot*, *when do I rotate* — and it answers them from this site's content rather than from whatever the model happens to remember about Deadlock.
+
+![How the Archivist answers](docs/images/rag-pipeline.svg)
+
+### How it works
+
+**Indexing.** `npm run ingest --prefix server` walks the corpus — the live item catalogue, the hero roster, every published build with its item order and each of its three guide phases, and every forum thread and substantial reply — and writes one prose passage per record. Each passage is embedded and stored in a `chunks` collection alongside its vector, a link back into the site, and a community-score weight.
+
+**Embeddings are local.** `all-MiniLM-L6-v2` runs inside the Node process through `transformers.js`. There is no embedding API key, no per-token cost and no vector database: the model weights (~90 MB) are downloaded once on first use and cached, and after that indexing works offline. At this corpus size — a few hundred passages — retrieval is a brute-force cosine scan in memory and returns in single-digit milliseconds.
+
+**Retrieval.** The question is embedded with the same model, scored against every chunk by cosine similarity, then nudged by `0.08 × community score` so that well-rated builds surface ahead of poorly-rated ones on an otherwise even match. Per-source caps stop the 173 item passages from crowding out guide prose. The top twelve go forward.
+
+**Grounding.** The widget also sends the build or hero of the page in view, and those passages are pinned into the context — which is what lets "what should I buy next?" resolve against the build you are reading. The system prompt holds the model to the retrieved passages: it must not invent an item name, a cost or a hero ability, it must quote soul costs exactly as they appear, and it must say when the context does not cover the question. Catalogue data is treated as authoritative; guides and forum replies are attributed as opinion.
+
+**Answering.** `claude-opus-5` with adaptive thinking at medium effort. The reply streams back over server-sent events — sources first, so the panel can show them while the text is still arriving.
+
+### Setting it up
+
+```bash
+# 1. add your key to server/.env
+ANTHROPIC_API_KEY=sk-ant-...
+
+# 2. build the knowledge base (needs MONGO_URI set and the app seeded)
+npm run ingest --prefix server
+```
+
+The index rebuilds from scratch each time. Publishing or editing a build re-indexes that build on its own, in the background, so new guides are answerable immediately; forum content is picked up on the next full ingest. Admins can trigger a rebuild without shell access by calling `POST /api/chat/reindex`.
+
+Both halves degrade honestly. Without `ANTHROPIC_API_KEY` the widget says so and disables its input rather than failing at send time; with an empty index it tells you to run the ingest. The endpoint is open to guests but rate limited per IP (15 messages per 10 minutes, 60 for signed-in users) so an unauthenticated endpoint cannot run up a bill.
+
+### Placement
+
+The launcher sits in the **bottom-left** corner. The bottom-right is already occupied by the tawk.to live-support widget embedded in `client/index.html`; if that widget is ever removed, move the Archivist back to the conventional corner in `client/src/components/chat/ChatWidget.jsx`.
+
+---
+
 ## Architecture
 
 React never talks to MongoDB or to a third party directly. Every request goes through the Express API, which owns the database connection and holds all outbound API keys, so nothing sensitive is ever shipped to the browser.
@@ -111,6 +154,7 @@ A few things worth calling out:
 - **Hero and item responses are cached in-process for one hour.** The cache is a module-level variable, which means it is per-process and resets on restart — fine for a single instance, something to revisit if this is ever scaled horizontally.
 - **The server boots without a database.** If `MONGO_URI` is missing or unreachable it logs a warning and still listens, so the hero, item, YouTube and patch endpoints keep working. Anything that persists will fail until Mongo is connected.
 - **Sightengine fails open.** If the profanity service is unconfigured, unreachable or slower than five seconds, the text is treated as clean and publishing proceeds. The filter is a convenience, not a security control.
+- **The only outbound AI call is the answer itself.** Embeddings are computed in-process, so indexing and retrieval need no network and no second API key.
 
 ## Data model
 
@@ -132,6 +176,9 @@ A build stores an embedded *snapshot* of its hero and items rather than referenc
 | Backend | Node.js (ES modules), Express 4, Mongoose 8 |
 | Database | MongoDB |
 | Auth | JWT (`jsonwebtoken`), passwords hashed with `bcryptjs` at 10 rounds |
+| Assistant | `claude-opus-5` via `@anthropic-ai/sdk`, streamed over SSE |
+| Embeddings | `all-MiniLM-L6-v2` run locally through `@huggingface/transformers` (384-d) |
+| Retrieval | Vectors in MongoDB, brute-force cosine in process — no vector database |
 | External data | Deadlock Assets API, YouTube Data API v3, Sightengine text moderation |
 | Tooling | `concurrently`, `nodemon` |
 
@@ -170,7 +217,15 @@ Creates two demo accounts and a couple of example builds:
 npm run seed --prefix server
 ```
 
-### 4. Run
+### 4. Build the assistant's index (optional)
+
+Only needed if you want the Archivist. Downloads the embedding model on first run:
+
+```bash
+npm run ingest --prefix server
+```
+
+### 5. Run
 
 ```bash
 npm run dev
@@ -197,6 +252,8 @@ All of these live in `server/.env`. The client needs no configuration.
 | `YOUTUBE_API_KEY` | no | YouTube Data API v3 key. Without it, `/api/youtube` returns 500 and builds simply carry no video. |
 | `SIGHTENGINE_USER` | no | Sightengine API user. Without it the profanity filter is skipped entirely. |
 | `SIGHTENGINE_SECRET` | no | Sightengine API secret. |
+| `ANTHROPIC_API_KEY` | no | Enables the Archivist. Without it the widget renders a "not configured" notice instead of accepting questions. |
+| `CHAT_EFFORT` | no | Reasoning effort for the assistant: `low`, `medium` (default), `high`, `xhigh` or `max`. Lower is faster and cheaper. |
 
 > **Note:** `server/.env.example` in this repository currently contains real API credentials rather than placeholders. Treat those keys as compromised — rotate them at the provider and replace the file's values with placeholders.
 
@@ -276,6 +333,14 @@ All responses are JSON and carry a `success` boolean. Endpoints marked **JWT** r
 | `GET` | `/api/patch` | — | Current patch notes |
 | `GET` | `/api/health` | — | Liveness probe |
 
+### Assistant
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/chat/status` | — | Whether the assistant is configured, plus index size by source |
+| `POST` | `/api/chat` | optional | Ask a question. Streams `sources`, then `delta` events, then `done`, as SSE. Body: `message`, `history[]`, `page`, `buildId`, `hero` |
+| `POST` | `/api/chat/reindex` | Admin | Rebuild the whole knowledge base |
+
 ### Admin
 
 | Method | Endpoint | Auth | Description |
@@ -304,6 +369,7 @@ patronArchive/
 │  ├─ src/
 │  │  ├─ components/
 │  │  │  ├─ builds/            BuildCalculator, BuildsList, BuildView, PublishForm
+│  │  │  ├─ chat/              ChatWidget — the Archivist panel, SSE client
 │  │  │  └─ layout/            Header
 │  │  ├─ lib/
 │  │  │  ├─ api.js             axios instance, attaches the bearer token
@@ -315,11 +381,13 @@ patronArchive/
 │
 ├─ server/                     Node + Express + Mongoose backend
 │  ├─ middleware/              auth (JWT + admin gate), errorHandler
-│  ├─ models/                  User, Build, Comment, Thread, Reply, Hero
-│  ├─ routes/                  one router per resource
-│  ├─ utils/                   sightengine, apiTracker, patchStore
+│  ├─ models/                  User, Build, Comment, Thread, Reply, Hero, Chunk
+│  ├─ routes/                  one router per resource, including chat
+│  ├─ utils/                   sightengine, apiTracker, patchStore,
+│  │                           embeddings (local model), rag (chunking + retrieval)
 │  ├─ index.js                 app wiring and startup
-│  └─ seed.js                  demo users and builds
+│  ├─ seed.js                  demo users and builds
+│  └─ ingest.js                builds the assistant's knowledge base
 │
 ├─ docs/images/                screenshots and diagrams used by this README
 └─ package.json                root scripts — run both halves with one command
@@ -334,6 +402,9 @@ Honest state of the codebase, for anyone picking it up:
 - **Leaked credentials.** `server/.env.example` holds live-looking YouTube and Sightengine keys. They need rotating and replacing with placeholders.
 - **`CREDENTIALS.txt`** sits in the repository root with the demo passwords in plain text. Harmless for a throwaway local seed, but it should not travel to anything deployed.
 - **Template leftovers.** `public/` still contains the default Next.js SVGs (`next.svg`, `vercel.svg`, and friends) from an earlier scaffold, and there is a stray zero-byte `[b.id` file in the root. Neither is referenced by the app.
-- **In-process caching.** Hero and item caches are module-level variables, so they are per-process and lost on restart.
+- **In-process caching.** Hero and item caches are module-level variables, so they are per-process and lost on restart. The same is true of the retrieval chunk cache and the assistant's rate limiter — both reset on restart and neither is shared across instances.
+- **Retrieval is brute force.** Every question scores against every chunk in memory. That is the right trade at a few hundred passages; past roughly ten thousand it wants a real vector index.
+- **Embedding quality is the ceiling.** `all-MiniLM-L6-v2` is small. It handles named things well — heroes, items, build titles — and is weaker on paraphrased intent, so a question like "how do I stop dying to burst damage" retrieves less precisely than a question naming an item. Swapping in a hosted embedding model would be a drop-in change to `server/utils/embeddings.js`.
+- **Forum content is only indexed on a full ingest.** Builds re-index themselves on publish and edit; threads and replies wait for the next `npm run ingest` or an admin reindex.
 - **No automated tests.** There is no test runner configured in any of the three packages.
 - **Vote counts are recomputed from arrays** on every read. Correct, and fine at this size, but it is a full array scan per build.

@@ -55,50 +55,60 @@
   <text x="616" y="372.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/heroes</text>
   <rect x="682" y="352" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
   <text x="740" y="372.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/items</text>
-  <rect x="62" y="392" width="140" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
-  <text x="132" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/youtube</text>
-  <rect x="210" y="392" width="140" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
-  <text x="280" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/sightengine</text>
-  <rect x="358" y="392" width="140" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
-  <text x="428" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/admin</text>
-  <rect x="506" y="392" width="140" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
-  <text x="576" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/patch</text>
-  <rect x="654" y="392" width="140" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
-  <text x="724" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/health</text>
-  <rect x="62" y="436" width="238" height="52" rx="8" fill="#1c1c1c"/>
-  <text x="74" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="12.5" fill="#fafafa" font-weight="600">middleware/auth.js</text>
-  <text x="74" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">verifies the JWT and loads the</text>
-  <text x="74" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">user; admin gate layered on top</text>
-  <rect x="310" y="436" width="238" height="52" rx="8" fill="#1c1c1c"/>
-  <text x="322" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="12.5" fill="#fafafa" font-weight="600">utils/sightengine.js</text>
-  <text x="322" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">profanity gate for builds,</text>
-  <text x="322" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">comments and forum posts</text>
-  <rect x="558" y="436" width="238" height="52" rx="8" fill="#1c1c1c"/>
-  <text x="570" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="12.5" fill="#fafafa" font-weight="600">utils/apiTracker.js</text>
-  <text x="570" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">per-API call and error counters</text>
-  <text x="570" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">behind the health screen</text>
+  <rect x="62" y="392" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
+  <text x="120" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/youtube</text>
+  <rect x="186" y="392" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
+  <text x="244" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/sightengine</text>
+  <rect x="310" y="392" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
+  <text x="368" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/chat</text>
+  <rect x="434" y="392" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
+  <text x="492" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/admin</text>
+  <rect x="558" y="392" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
+  <text x="616" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/patch</text>
+  <rect x="682" y="392" width="116" height="32" rx="8" fill="#1c1508" stroke="#3a2a0a" stroke-width="1"/>
+  <text x="740" y="412.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="500" text-anchor="middle">/api/health</text>
+  <rect x="62" y="436" width="176" height="52" rx="8" fill="#1c1c1c"/>
+  <text x="74" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="600">middleware/auth.js</text>
+  <text x="74" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">JWT check, then the</text>
+  <text x="74" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">admin gate on top</text>
+  <rect x="248" y="436" width="176" height="52" rx="8" fill="#1c1c1c"/>
+  <text x="260" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="600">utils/sightengine.js</text>
+  <text x="260" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">profanity gate for</text>
+  <text x="260" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">every user submission</text>
+  <rect x="434" y="436" width="176" height="52" rx="8" fill="#1c1c1c"/>
+  <text x="446" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="600">utils/rag.js</text>
+  <text x="446" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">chunking, embedding</text>
+  <text x="446" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">and cosine retrieval</text>
+  <rect x="620" y="436" width="176" height="52" rx="8" fill="#1c1c1c"/>
+  <text x="632" y="451.5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="600">utils/apiTracker.js</text>
+  <text x="632" y="467.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">per-API call and</text>
+  <text x="632" y="481.5" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400">error counters</text>
   <line x1="430" y1="510" x2="430" y2="558" stroke="#3f3f46" stroke-width="1.5" marker-end="url(#ar-line)"/>
-  <text x="448" y="538" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#a1a1aa" font-weight="400">Mongoose ODM — the server still boots when MONGO_URI is unset</text>
+  <text x="448" y="532" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#a1a1aa" font-weight="400">Mongoose ODM — the server still boots when MONGO_URI is unset</text>
+  <text x="448" y="548" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">Embeddings run in process — no vector database, no embedding API</text>
   <rect x="40" y="560" width="780" height="112" rx="14" fill="#131313" stroke="#581c87" stroke-width="1"/>
-  <text x="62" y="586" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#c084fc" font-weight="600" letter-spacing="0.4">MONGODB · six Mongoose models</text>
-  <rect x="62" y="602" width="116" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
-  <text x="120" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">User</text>
-  <text x="120" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">roles, strikes</text>
-  <rect x="186" y="602" width="116" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
-  <text x="244" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Build</text>
-  <text x="244" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">items, guide, votes</text>
-  <rect x="310" y="602" width="116" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
-  <text x="368" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Comment</text>
-  <text x="368" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">per build</text>
-  <rect x="434" y="602" width="116" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
-  <text x="492" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Thread</text>
-  <text x="492" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">forum topics</text>
-  <rect x="558" y="602" width="116" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
-  <text x="616" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Reply</text>
-  <text x="616" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">nested</text>
-  <rect x="682" y="602" width="116" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
-  <text x="740" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Hero</text>
-  <text x="740" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">seeded catalogue</text>
+  <text x="62" y="586" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#c084fc" font-weight="600" letter-spacing="0.4">MONGODB · seven Mongoose models</text>
+  <rect x="62" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="111" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">User</text>
+  <text x="111" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">roles, strikes</text>
+  <rect x="168" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="217" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Build</text>
+  <text x="217" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">items, guide, votes</text>
+  <rect x="274" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="323" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Comment</text>
+  <text x="323" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">per build</text>
+  <rect x="380" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="429" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Thread</text>
+  <text x="429" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">forum topics</text>
+  <rect x="486" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="535" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Reply</text>
+  <text x="535" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">nested</text>
+  <rect x="592" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="641" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Hero</text>
+  <text x="641" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">catalogue</text>
+  <rect x="698" y="602" width="98" height="48" rx="8" fill="#150c1c" stroke="#2a1240" stroke-width="1"/>
+  <text x="747" y="623" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#c084fc" font-weight="600" text-anchor="middle">Chunk</text>
+  <text x="747" y="639" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#a1a1aa" font-weight="400" text-anchor="middle">text + vector</text>
   <text x="870" y="118" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#f87171" font-weight="600" letter-spacing="0.6">THIRD-PARTY SERVICES</text>
   <rect x="870" y="132" width="290" height="76" rx="10" fill="#1c0d0d" stroke="#7f1d1d" stroke-width="1"/>
   <text x="886" y="158" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#f87171" font-weight="600">Deadlock Assets API</text>
@@ -116,13 +126,18 @@
   <text x="886" y="434" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#f87171" font-weight="600">Sightengine</text>
   <text x="886" y="452" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11" fill="#a1a1aa" font-weight="400">text/check.json profanity scan</text>
   <text x="886" y="468" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">5 s timeout · fails open</text>
+  <rect x="870" y="500" width="290" height="76" rx="10" fill="#1c0d0d" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="886" y="526" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#f87171" font-weight="600">Anthropic API</text>
+  <text x="886" y="544" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11" fill="#a1a1aa" font-weight="400">claude-opus-5, streamed</text>
+  <text x="886" y="560" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">answers the chat widget</text>
   <line x1="820" y1="410" x2="845" y2="410" stroke="#7f1d1d" stroke-width="1.5"/>
-  <line x1="845" y1="170" x2="845" y2="446" stroke="#7f1d1d" stroke-width="1.5"/>
+  <line x1="845" y1="170" x2="845" y2="538" stroke="#7f1d1d" stroke-width="1.5"/>
   <line x1="845" y1="170" x2="868" y2="170" stroke="#7f1d1d" stroke-width="1.5" marker-end="url(#ar-ext)"/>
   <line x1="845" y1="262" x2="868" y2="262" stroke="#7f1d1d" stroke-width="1.5" marker-end="url(#ar-ext)"/>
   <line x1="845" y1="354" x2="868" y2="354" stroke="#7f1d1d" stroke-width="1.5" marker-end="url(#ar-ext)"/>
   <line x1="845" y1="446" x2="868" y2="446" stroke="#7f1d1d" stroke-width="1.5" marker-end="url(#ar-ext)"/>
-  <text x="870" y="512" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">Outbound only, and always from the server.</text>
-  <text x="870" y="527" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">Keys live in server/.env, so the browser</text>
-  <text x="870" y="542" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">never sees them.</text>
+  <line x1="845" y1="538" x2="868" y2="538" stroke="#7f1d1d" stroke-width="1.5" marker-end="url(#ar-ext)"/>
+  <text x="870" y="600" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">Outbound only, and always from the server.</text>
+  <text x="870" y="615" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">Keys live in server/.env, so the browser</text>
+  <text x="870" y="630" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">never sees them.</text>
 </svg>

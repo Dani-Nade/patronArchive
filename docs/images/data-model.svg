@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1210" height="810" viewBox="0 0 1210 810" role="img">
+  <defs>
+    <marker id="ar-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3f3f46"/></marker>
+    <marker id="ar-client" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2dd4bf"/></marker>
+    <marker id="ar-server" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fbbf24"/></marker>
+    <marker id="ar-db" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c084fc"/></marker>
+    <marker id="ar-ext" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f87171"/></marker>
+  </defs>
+  <rect width="1210" height="810" fill="#0a0a0a"/>
+  <rect x="0.5" y="0.5" width="1209" height="809" rx="14" fill="none" stroke="#242424"/>
+  <text x="40" y="46" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="21" fill="#fafafa" font-weight="700">The Patron's Archive — Data Model</text>
+  <text x="40" y="68" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#71717a" font-weight="400">Six collections. Arrows are ObjectId references; embedded documents are marked inline.</text>
+  <rect x="60" y="120" width="300" height="212" rx="12" fill="#131313" stroke="#134e4a" stroke-width="1"/>
+  <path d="M 60 132 a 12 12 0 0 1 12 -12 h 276 a 12 12 0 0 1 12 12 v 32 h -300 z" fill="#07211f"/>
+  <text x="74" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#2dd4bf" font-weight="700">User</text>
+  <text x="346" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">users</text>
+  <text x="74" y="186" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">name</text>
+  <text x="346" y="186" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string, max 40</text>
+  <text x="74" y="208" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">email</text>
+  <text x="346" y="208" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">unique, lowercased</text>
+  <text x="74" y="230" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">password</text>
+  <text x="346" y="230" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">bcrypt, 10 rounds</text>
+  <text x="74" y="252" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">avatar / bio</text>
+  <text x="346" y="252" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">profile fields</text>
+  <text x="74" y="274" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#2dd4bf" font-weight="400">role</text>
+  <text x="346" y="274" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">'user' | 'admin'</text>
+  <text x="74" y="296" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">suspended</text>
+  <text x="346" y="296" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">boolean</text>
+  <text x="74" y="318" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">strikes</text>
+  <text x="346" y="318" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">number</text>
+  <rect x="60" y="420" width="300" height="168" rx="12" fill="#131313" stroke="#3f3f46" stroke-width="1"/>
+  <path d="M 60 432 a 12 12 0 0 1 12 -12 h 276 a 12 12 0 0 1 12 12 v 32 h -300 z" fill="#151515"/>
+  <text x="74" y="446" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#a1a1aa" font-weight="700">Hero</text>
+  <text x="346" y="446" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">heroes</text>
+  <text x="74" y="486" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">apiId</text>
+  <text x="346" y="486" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">unique, sparse</text>
+  <text x="74" y="508" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">name</text>
+  <text x="346" y="508" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">unique</text>
+  <text x="74" y="530" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">role</text>
+  <text x="346" y="530" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string</text>
+  <text x="74" y="552" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">images.portrait</text>
+  <text x="346" y="552" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">url</text>
+  <text x="74" y="574" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">description</text>
+  <text x="346" y="574" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string</text>
+  <text x="60" y="640" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">Seeded catalogue. A build stores its own hero snapshot,</text>
+  <text x="60" y="655" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">so renaming a hero never rewrites published history.</text>
+  <rect x="450" y="120" width="310" height="344" rx="12" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <path d="M 450 132 a 12 12 0 0 1 12 -12 h 286 a 12 12 0 0 1 12 12 v 32 h -310 z" fill="#1c1508"/>
+  <text x="464" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#fbbf24" font-weight="700">Build</text>
+  <text x="746" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">builds</text>
+  <text x="464" y="186" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="400">author</text>
+  <text x="746" y="186" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ User</text>
+  <text x="464" y="208" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">title</text>
+  <text x="746" y="208" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">text-indexed</text>
+  <text x="464" y="230" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">hero</text>
+  <text x="746" y="230" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">embedded snapshot</text>
+  <text x="464" y="252" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">items[]</text>
+  <text x="746" y="252" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">embedded: cost, slot, tier</text>
+  <text x="464" y="274" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">totalCost</text>
+  <text x="746" y="274" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">number</text>
+  <text x="464" y="296" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">guide.early/mid/late</text>
+  <text x="746" y="296" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">strings</text>
+  <text x="464" y="318" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">video</text>
+  <text x="746" y="318" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">id + timestamps[]</text>
+  <text x="464" y="340" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">role</text>
+  <text x="746" y="340" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">carry … assassin</text>
+  <text x="464" y="362" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">patch</text>
+  <text x="746" y="362" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string</text>
+  <text x="464" y="384" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="400">upvotes[] / downvotes[]</text>
+  <text x="746" y="384" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ User</text>
+  <text x="464" y="406" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">reported / reportReason</text>
+  <text x="746" y="406" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">manual report</text>
+  <text x="464" y="428" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">autoFlagged</text>
+  <text x="746" y="428" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">set by Sightengine</text>
+  <text x="464" y="450" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">flaggedWords[]</text>
+  <text x="746" y="450" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">matched terms</text>
+  <rect x="850" y="120" width="300" height="190" rx="12" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <path d="M 850 132 a 12 12 0 0 1 12 -12 h 276 a 12 12 0 0 1 12 12 v 32 h -300 z" fill="#1c1508"/>
+  <text x="864" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#fbbf24" font-weight="700">Comment</text>
+  <text x="1136" y="146" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">comments</text>
+  <text x="864" y="186" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="400">build</text>
+  <text x="1136" y="186" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ Build</text>
+  <text x="864" y="208" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fbbf24" font-weight="400">author</text>
+  <text x="1136" y="208" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ User</text>
+  <text x="864" y="230" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">body</text>
+  <text x="1136" y="230" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string, max 1000</text>
+  <text x="864" y="252" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">reported</text>
+  <text x="1136" y="252" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">boolean</text>
+  <text x="864" y="274" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">autoFlagged</text>
+  <text x="1136" y="274" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">boolean</text>
+  <text x="864" y="296" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">flaggedWords[]</text>
+  <text x="1136" y="296" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">matched terms</text>
+  <rect x="450" y="530" width="310" height="212" rx="12" fill="#131313" stroke="#581c87" stroke-width="1"/>
+  <path d="M 450 542 a 12 12 0 0 1 12 -12 h 286 a 12 12 0 0 1 12 12 v 32 h -310 z" fill="#150c1c"/>
+  <text x="464" y="556" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#c084fc" font-weight="700">Thread</text>
+  <text x="746" y="556" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">threads</text>
+  <text x="464" y="596" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">title</text>
+  <text x="746" y="596" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string, max 200</text>
+  <text x="464" y="618" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">body</text>
+  <text x="746" y="618" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string, max 5000</text>
+  <text x="464" y="640" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#c084fc" font-weight="400">author</text>
+  <text x="746" y="640" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ User</text>
+  <text x="464" y="662" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">category</text>
+  <text x="746" y="662" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">general … offtopic</text>
+  <text x="464" y="684" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#c084fc" font-weight="400">upvotes[]</text>
+  <text x="746" y="684" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ User</text>
+  <text x="464" y="706" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">pinned / locked</text>
+  <text x="746" y="706" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">moderation</text>
+  <text x="464" y="728" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">reported</text>
+  <text x="746" y="728" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">boolean</text>
+  <rect x="850" y="530" width="300" height="168" rx="12" fill="#131313" stroke="#581c87" stroke-width="1"/>
+  <path d="M 850 542 a 12 12 0 0 1 12 -12 h 276 a 12 12 0 0 1 12 12 v 32 h -300 z" fill="#150c1c"/>
+  <text x="864" y="556" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" fill="#c084fc" font-weight="700">Reply</text>
+  <text x="1136" y="556" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">replies</text>
+  <text x="864" y="596" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#c084fc" font-weight="400">thread</text>
+  <text x="1136" y="596" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ Thread</text>
+  <text x="864" y="618" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#c084fc" font-weight="400">author</text>
+  <text x="1136" y="618" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ User</text>
+  <text x="864" y="640" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">body</text>
+  <text x="1136" y="640" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">string, max 2000</text>
+  <text x="864" y="662" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#c084fc" font-weight="400">parentReply</text>
+  <text x="1136" y="662" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">→ Reply | null</text>
+  <text x="864" y="684" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="11.5" fill="#fafafa" font-weight="400">reported</text>
+  <text x="1136" y="684" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">boolean</text>
+  <line x1="360" y1="200" x2="448" y2="200" stroke="#3f3f46" stroke-width="1.5" marker-end="url(#ar-line)"/>
+  <text x="404" y="192" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="400" text-anchor="middle">1 : N</text>
+  <line x1="760" y1="200" x2="848" y2="200" stroke="#3f3f46" stroke-width="1.5" marker-end="url(#ar-line)"/>
+  <text x="804" y="192" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="400" text-anchor="middle">1 : N</text>
+  <path d="M 360 330 H 405 V 600 H 448" fill="none" stroke="#3f3f46" stroke-width="1.5" marker-end="url(#ar-line)"/>
+  <text x="405" y="466" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="400" text-anchor="middle">1 : N</text>
+  <line x1="760" y1="600" x2="848" y2="600" stroke="#3f3f46" stroke-width="1.5" marker-end="url(#ar-line)"/>
+  <text x="804" y="592" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="400" text-anchor="middle">1 : N</text>
+  <path d="M 1150 585 H 1180 V 645 H 1150" fill="none" stroke="#3f3f46" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ar-line)"/>
+  <text x="1150" y="726" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="400" text-anchor="end">self-reference:</text>
+  <text x="1150" y="741" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">nested replies</text>
+  <text x="60" y="748" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">Every author field points back to User — drawn once, from User to Build, to keep the diagram readable.</text>
+  <text x="60" y="768" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#71717a" font-weight="400">Votes are stored as arrays of user ids rather than counters, so one account can only ever count once.</text>
+</svg>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="580" viewBox="0 0 1200 580" role="img">
+  <defs>
+    <marker id="ar-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3f3f46"/></marker>
+    <marker id="ar-client" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2dd4bf"/></marker>
+    <marker id="ar-server" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fbbf24"/></marker>
+    <marker id="ar-db" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c084fc"/></marker>
+    <marker id="ar-ext" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f87171"/></marker>
+  </defs>
+  <rect width="1200" height="580" fill="#0a0a0a"/>
+  <rect x="0.5" y="0.5" width="1199" height="579" rx="14" fill="none" stroke="#242424"/>
+  <text x="40" y="46" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="21" fill="#fafafa" font-weight="700">The Patron's Archive — Roles &amp; Moderation</text>
+  <text x="40" y="68" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#71717a" font-weight="400">What each visitor can do, and the path a piece of user content takes before and after it goes live.</text>
+  <rect x="40" y="96" width="360" height="214" rx="12" fill="#131313" stroke="#3f3f46" stroke-width="1"/>
+  <text x="56" y="126" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14.5" fill="#a1a1aa" font-weight="700">Guest</text>
+  <text x="384" y="126" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">no account</text>
+  <line x1="56" y1="140" x2="384" y2="140" stroke="#3f3f46" stroke-width="1"/>
+  <circle cx="61" cy="160" r="2.5" fill="#a1a1aa"/>
+  <text x="72" y="164" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Browse and filter every published build</text>
+  <circle cx="61" cy="183" r="2.5" fill="#a1a1aa"/>
+  <text x="72" y="187" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Open a build: items, cost, guide, video</text>
+  <circle cx="61" cy="206" r="2.5" fill="#a1a1aa"/>
+  <text x="72" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Browse the hero and item catalogues</text>
+  <circle cx="61" cy="229" r="2.5" fill="#a1a1aa"/>
+  <text x="72" y="233" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Read forum threads and replies</text>
+  <circle cx="61" cy="252" r="2.5" fill="#a1a1aa"/>
+  <text x="72" y="256" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Register or sign in</text>
+  <rect x="420" y="96" width="360" height="214" rx="12" fill="#131313" stroke="#134e4a" stroke-width="1"/>
+  <text x="436" y="126" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14.5" fill="#2dd4bf" font-weight="700">Signed-in user</text>
+  <text x="764" y="126" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">JWT required</text>
+  <line x1="436" y1="140" x2="764" y2="140" stroke="#134e4a" stroke-width="1"/>
+  <circle cx="441" cy="160" r="2.5" fill="#2dd4bf"/>
+  <text x="452" y="164" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Everything a guest can do, plus:</text>
+  <circle cx="441" cy="183" r="2.5" fill="#2dd4bf"/>
+  <text x="452" y="187" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Publish a build with the item calculator</text>
+  <circle cx="441" cy="206" r="2.5" fill="#2dd4bf"/>
+  <text x="452" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Attach a YouTube guide with timestamps</text>
+  <circle cx="441" cy="229" r="2.5" fill="#2dd4bf"/>
+  <text x="452" y="233" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Vote, comment, open threads and reply</text>
+  <circle cx="441" cy="252" r="2.5" fill="#2dd4bf"/>
+  <text x="452" y="256" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Report a build or a comment</text>
+  <circle cx="441" cy="275" r="2.5" fill="#2dd4bf"/>
+  <text x="452" y="279" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Edit the profile, or delete the account</text>
+  <rect x="800" y="96" width="360" height="214" rx="12" fill="#131313" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="816" y="126" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14.5" fill="#f87171" font-weight="700">Admin</text>
+  <text x="1144" y="126" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400" text-anchor="end">role: 'admin'</text>
+  <line x1="816" y1="140" x2="1144" y2="140" stroke="#7f1d1d" stroke-width="1"/>
+  <circle cx="821" cy="160" r="2.5" fill="#f87171"/>
+  <text x="832" y="164" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Everything a signed-in user can do, plus:</text>
+  <circle cx="821" cy="183" r="2.5" fill="#f87171"/>
+  <text x="832" y="187" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Dashboard totals across all collections</text>
+  <circle cx="821" cy="206" r="2.5" fill="#f87171"/>
+  <text x="832" y="210" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Promote, suspend or delete any user</text>
+  <circle cx="821" cy="229" r="2.5" fill="#f87171"/>
+  <text x="832" y="233" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Work the reports queue: delete or dismiss</text>
+  <circle cx="821" cy="252" r="2.5" fill="#f87171"/>
+  <text x="832" y="256" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Inspect the live item catalogue</text>
+  <circle cx="821" cy="275" r="2.5" fill="#f87171"/>
+  <text x="832" y="279" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#fafafa" font-weight="400">Watch API usage; edit the patch notes</text>
+  <text x="40" y="356" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#fbbf24" font-weight="600" letter-spacing="0.6">CONTENT MODERATION PIPELINE</text>
+  <rect x="40" y="372" width="200" height="88" rx="10" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <text x="54" y="398" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="600">Submit</text>
+  <text x="54" y="419" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="10.5" fill="#a1a1aa" font-weight="400">POST /api/builds</text>
+  <text x="54" y="437" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">POST /api/comments</text>
+  <line x1="246" y1="416" x2="274" y2="416" stroke="#78350f" stroke-width="1.5" marker-end="url(#ar-server)"/>
+  <rect x="280" y="372" width="210" height="88" rx="10" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <text x="294" y="398" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="600">Profanity scan</text>
+  <text x="294" y="419" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="10.5" fill="#a1a1aa" font-weight="400">utils/sightengine.js</text>
+  <text x="294" y="437" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">text/check.json · 5 s cap</text>
+  <line x1="496" y1="416" x2="524" y2="416" stroke="#78350f" stroke-width="1.5" marker-end="url(#ar-server)"/>
+  <rect x="530" y="372" width="200" height="88" rx="10" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <text x="544" y="398" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="600">Verdict</text>
+  <text x="544" y="419" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="10.5" fill="#a1a1aa" font-weight="400">clean → published</text>
+  <text x="544" y="437" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">match → autoFlagged</text>
+  <line x1="736" y1="416" x2="764" y2="416" stroke="#78350f" stroke-width="1.5" marker-end="url(#ar-server)"/>
+  <rect x="770" y="372" width="190" height="88" rx="10" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <text x="784" y="398" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="600">Reports queue</text>
+  <text x="784" y="419" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="10.5" fill="#a1a1aa" font-weight="400">GET /api/admin/reports</text>
+  <text x="784" y="437" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">flagged + user-reported</text>
+  <line x1="966" y1="416" x2="994" y2="416" stroke="#78350f" stroke-width="1.5" marker-end="url(#ar-server)"/>
+  <rect x="1000" y="372" width="160" height="88" rx="10" fill="#131313" stroke="#78350f" stroke-width="1"/>
+  <text x="1014" y="398" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#fbbf24" font-weight="600">Resolution</text>
+  <text x="1014" y="419" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="10.5" fill="#a1a1aa" font-weight="400">delete the content</text>
+  <text x="1014" y="437" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#71717a" font-weight="400">or dismiss the flag</text>
+  <text x="40" y="496" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#a1a1aa" font-weight="400">The gate fails open: if Sightengine is unreachable, unconfigured or slow, the text counts as clean and publishing continues.</text>
+  <text x="40" y="517" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#a1a1aa" font-weight="400">Readers can also flag by hand — POST /api/builds/:id/report and /api/comments/:id/report set reported plus a reason, landing it in the same queue.</text>
+  <text x="40" y="545" font-family="ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11.5" fill="#71717a" font-weight="400">Admin actions show up on the user record: suspended blocks sign-in, and three strikes from removals suspends the account automatically.</text>
+</svg>
